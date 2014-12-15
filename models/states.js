@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 var statesSchema = new Schema({
 	name: String,
-	type: Number
+	num: Number
 },{_id:false});
 
 mongoose.model('states', statesSchema);

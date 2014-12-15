@@ -3,9 +3,15 @@
 <p>Code it up</p>
 
 <p>
-    <span ng-bind="someVar" />
+    <span ng-bind="someVar" > </span>
     <ul>
         <li ng-repeat="item in someList">{{item}}</li>
     </ul>
     <button class="btn btn-primary" ng-click="someFunctionUsedByTheHomePage()">Click Me</button>
-</p>
+
+
+<p>
+    <ul ng-repeat="room in rooms">
+        <h3>{{room.name}}</h3>
+        <li ng-repeat="part in room.parts"><a href="#" ng-click="Open('part.order')">{{part.name}}</a></li>
+    </ul>

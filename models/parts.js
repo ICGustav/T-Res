@@ -9,10 +9,11 @@ var partsSchema = new Schema({
 	}],
 	name: String,
 	order: Number,
-	state: {
+	positioning: String,
+	room: {
 		type: Schema.ObjectId,
-		ref: 'states'
+		ref: 'rooms'
 	}
-},{_id:false});
+},{});
 
 mongoose.model('parts', partsSchema);

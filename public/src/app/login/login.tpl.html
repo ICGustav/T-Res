@@ -1,0 +1,7 @@
+<h3>Login </h3>
+<label>Email:</label>
+<!-- this input field synchronizes directly to the name attribute in Firebase! -->
+<input type="text" ng-model="user.email" />
+<label>Password:</label>
+<input type="text" ng-model="user.password" />
+<button class="btn btn-alert" ng-click="Login(user)">Sing in</button>

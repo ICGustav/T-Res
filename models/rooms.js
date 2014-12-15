@@ -8,11 +8,8 @@ var roomsSchema = new Schema({
 		ref: 'parts'
 	}],
 	name: String,
-	order: Number,
-	state: {
-		type: Schema.ObjectId,
-		ref: 'states'
-	}
-},{_id:false});
+	positioning: String,
+	order: Number
+},{});
 
 mongoose.model('rooms', roomsSchema);

@@ -1,0 +1,24 @@
+<h1>Tables</h1>
+
+<h3>{{tables.length}} / {{(tables | filter: '548afd22436b8c341c8d1efb').length}} / {{(tables| filter: '548afd22436b8c341c8d1efc').length}}</h3>
+<br/>
+
+<div>
+    <h4>Filtruj: </h4>
+    <h5><input type="text" ng-model="SearchText" placeholder="Zadaj text pre filtráciu"/></h5>
+</div>
+<br/>
+
+<div ng-repeat="table in tables | filter: SearchText | orderBy:'table.order'">
+    <span> Stôl číslo: </span>
+    <input type="text" ng-model="table.order"/>
+    <select ng-init="changeTable.part = parts[table.part.order]" ng-model="changeTable.part" ng-options="part.order for part in parts" required></select>
+    <button class="btn btn-info" ng-click="SaveTable(table, changeTable)">Uložiť</button>
+    <div class="btn btn-primary" ng-click="CleanTable(table)">Vyčistiť</div>
+    <div class="btn btn-danger" ng-click="DeleteTable(table)">Vymazať</div>
+    <br/>
+</div>
+
+<div>
+    <button class="btn btn-info" ng-click="AddTable()">Vytvoriť</button>
+</div>

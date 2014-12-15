@@ -1,0 +1,31 @@
+<h1>Seats</h1>
+
+<h3>{{seats.length}} / {{(seats | filter: 'Reservované').length}} / {{(seats | filter: 'Zakúpené').length}}</h3>
+<br/>
+
+<div>
+    <h4>Filtruj: </h4>
+    <h5><input type="text" ng-model="SearchText" placeholder="Zadaj text pre filtráciu"/></h5>
+</div>
+<br/>
+
+<div ng-repeat="seat in seats | filter: SearchText | orderBy:'seat.order'">
+    {{seat.order+1}}
+    <input type="text" ng-model="seat.full_name" value="{{seat.full_name}}"/>
+    <span> Miesto: </span>
+    <select ng-init="changeSeat.state = states[seat.state.num]" ng-model="changeSeat.state" ng-options="state.name for state in states" required></select>
+    <span> Stôl číslo: </span>
+    <select ng-init="changeSeat.table = tables[seat.table.order]" ng-model="changeSeat.table" ng-options="table.order for table in tables" required></select>
+
+    <button class="btn btn-info" ng-click="SaveSeat(seat, changeSeat)">Uložiť</button>
+    <div class="btn btn-primary" ng-click="CleanSeat(seat)">Vyčistiť</div>
+    <div class="btn btn-danger" ng-click="DeleteSeat(seat)">Vymazať</div>
+    <br/>
+</div>
+
+<div>
+    <input type="text" ng-model="addSeat.full_name" placeholder="Zadaj celé meno"/>
+    <span> Stôl číslo: </span>
+    <select ng-model="addSeat.table" ng-options="table.order for table in tables" required></select>
+    <button class="btn btn-info" ng-click="AddSeat(addSeat)">Vytvoriť</button>
+</div>

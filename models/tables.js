@@ -2,17 +2,21 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
+
 var tablesSchema = new Schema({
-	seats: [{
-		type : Schema.ObjectId,
-		ref: 'seats'
-	}],
-	name: String,
+	seats: [
+		{
+			_id: {
+				type: Schema.Types.ObjectId, ref: 'seats'
+			}
+		}
+	],
 	order: Number,
-	state: {
+	part: {
 		type: Schema.ObjectId,
-		ref: 'states'
-	}
-},{_id:false});
+		ref: 'parts'
+	},
+	modified: { type: Date, default: Date.now }
+},{});
 
 mongoose.model('tables', tablesSchema);

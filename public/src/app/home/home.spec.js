@@ -5,7 +5,7 @@
  * automatically.
  */
 describe('home section', function () {
-    beforeEach(module('Table-Reservation-App.home'));
+    beforeEach(module('T-Res-App.home'));
 
     it('should have a dummy test', inject(function() {
         expect(true).toBeTruthy();

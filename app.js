@@ -64,7 +64,7 @@ app.use(function(req, res, next) {
 // will print stacktrace
 if (app.get('env') === 'development') {
     // connection to MongoDB with sqool_export DB
-    mongoose.connect('mongodb://127.0.0.1/sq_export');
+    mongoose.connect('mongodb://127.0.0.1:27017/T-Res');
 
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);

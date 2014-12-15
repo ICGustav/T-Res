@@ -23,6 +23,6 @@
         init();
     });
 
-}(angular.module("Table-Reservation-App.about", [
+}(angular.module("T-Res-App.about", [
     'ui.router'
 ])));

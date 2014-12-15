@@ -1,0 +1,39 @@
+<h1>Parts</h1>
+
+<h3>{{tables.length}} / {{(tables | filter: '548afd22436b8c341c8d1efb').length}} / {{(tables| filter: '548afd22436b8c341c8d1efc').length}}</h3>
+<br/>
+
+<div>
+    <h4>Filtruj: </h4>
+    <h5><input type="text" ng-model="SearchText" placeholder="Zadaj text pre filtráciu"/></h5>
+</div>
+<br/>
+
+<div ng-repeat="part in parts | filter: SearchText | orderBy:'part.order'">
+    <span> Poradie: </span>
+    <input type="text" ng-model="part.order"/>
+    <span> Názov: </span>
+    <input type="text" ng-model="part.name"/>
+    <span> Pozícia: </span>
+    <input type="text" ng-model="part.positioning"/>
+    <span> Miestnosť: </span>
+    <select ng-init="changePart.room = rooms[part.room.order]" ng-model="changePart.room" ng-options="room.name for room in rooms" required></select>
+
+    <button class="btn btn-info" ng-click="SavePart(part, changePart)">Uložiť</button>
+    <div class="btn btn-primary" ng-click="CleanPart(part)">Vyčistiť</div>
+    <div class="btn btn-danger" ng-click="DeletePart(part)">Vymazať</div>
+    <br/>
+</div>
+<br/>
+
+<div>
+    <span> Poradie: </span>
+    <input type="text" ng-model="newPart.order" placeholder="Číslo poradia časti v miestnosti"/>
+    <span> Názov: </span>
+    <input type="text" ng-model="newPart.name" placeholder="Zadaj popis časti v miestnosti"/>
+    <span> Pozícia: </span>
+    <input type="text" ng-model="newPart.positioning" placeholder="Zadaj pozíciu časti miestnosti"/>
+    <span> Miestnosť: </span>
+    <select ng-model="newPart.room" ng-options="room.name for room in rooms" required></select>
+    <button class="btn btn-info" ng-click="AddPart(newPart)">Vytvoriť</button>
+</div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="Table-Reservation-App" ng-controller="AppController">
+<html ng-app="T-Res-App" ng-controller="AppController">
 <head>
     <title ng-bind="pageTitle"></title>
 
@@ -16,11 +16,14 @@
     <header>
         <nav class="container navbar-default">
             <ul class="nav navbar-nav">
-                <li ui-sref-active="active">
+                <li class="left" ui-sref-active="active">
                     <a ui-sref="home">Home</a>
                 </li>
-                <li ui-sref-active="active">
+                <li class="left" ui-sref-active="active">
                     <a ui-sref="about">About</a>
+                </li>
+                <li class="right" ui-sref-active="active">
+                    <a ui-sref="login">Login</a>
                 </li>
             </ul>
         </nav>
@@ -29,6 +32,7 @@
     <div class="container" ui-view="main"></div>
 
     <footer class="container">
+        <br/>
         (c) <%= date %> <%= author %>
     </footer>
 </body>

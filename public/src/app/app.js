@@ -4,17 +4,23 @@
         $urlRouterProvider.otherwise('/home');
     });
 
-    app.run(function () {});
-
     app.controller('AppController', function ($scope) {
 
     });
 
-}(angular.module("Table-Reservation-App", [
-    'Table-Reservation-App.home',
-    'Table-Reservation-App.about',
+}(angular.module("T-Res-App", [
+    'T-Res-App.home',
+    'T-Res-App.about',
+    'T-Res-App.profile',
+    'T-Res-App.rooms',
+    'T-Res-App.parts',
+    'T-Res-App.tables',
+    'T-Res-App.seats',
+    'T-Res-App.login',
+    'ngResource',
     'templates-app',
     'templates-common',
     'ui.router.state',
     'ui.router',
+    'firebase'
 ])));
