@@ -65,8 +65,8 @@ router.post('/',function(req, res){
   return mongoose.model('seats').findOne({_id: req.body._id}, function (err, seat) {
     if (!err) {
       seat.full_name = req.body.full_name;
-      var state = req.body.state;//new mongoose.Schema.ObjectId();
-      seat.state = state;
+      //new mongoose.Schema.ObjectId();
+      seat.state = req.body.state;
       seat.table = req.body.table;
       seat.save();
       mongoose.model('tables').findOne({_id: req.body.table}, function (err, table) {

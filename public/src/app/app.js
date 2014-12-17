@@ -17,6 +17,7 @@
     'T-Res-App.tables',
     'T-Res-App.seats',
     'T-Res-App.login',
+    'ngMaterial',
     'ngResource',
     'templates-app',
     'templates-common',

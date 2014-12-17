@@ -78,15 +78,19 @@ module.exports = function(grunt) {
             js: [
                 'vendor/angular/angular.js',
                 'vendor/angular-resource/angular-resource.js',
-                'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
+                //'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
                 'vendor/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
                 'vendor/angular-ui-router/release/angular-ui-router.js',
                 'vendor/angular-ui-utils/modules/route/route.js',
                 'vendor/firebase/firebase.js',
-                'vendor/angularfire/dist/angularfire.min.js'
-
+                'vendor/angularfire/dist/angularfire.min.js',
+                'vendor/angular-aria/angular-aria.js',
+                'vendor/angular-animate/angular-animate.js',
+                'vendor/hammerjs/hammer.js',
+                'vendor/angular-material/angular-material.js'
             ],
             css: [
+                'vendor/angular-material/angular-material.css'
             ],
             assets: [
             ]
@@ -377,7 +381,7 @@ module.exports = function(grunt) {
                     '<%= build_dir %>/src/**/*.js',
                     '<%= html2js.common.dest %>',
                     '<%= html2js.app.dest %>',
-                    '<%= vendor_files.css %>',
+                    //'<%= vendor_files.css %>',
                     '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
                 ]
             },
@@ -391,7 +395,7 @@ module.exports = function(grunt) {
                 dir: '<%= compile_dir %>',
                 src: [
                     '<%= concat.compile_js.dest %>',
-                    '<%= vendor_files.css %>',
+                    //'<%= vendor_files.css %>',
                     '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
                 ]
             }

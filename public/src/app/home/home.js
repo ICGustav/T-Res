@@ -31,7 +31,7 @@
 
     // As you add controllers to a module and they grow in size, feel free to place them in their own files.
     //  Let each module grow organically, adding appropriate organization and sub-folders as needed.
-    app.controller('HomeController', function ($scope, $resource) {
+    app.controller('HomeController', function ($scope, $resource, $mdDialog) {
 
         var init = function() {
             var Rooms = $resource('/rooms');
@@ -40,17 +40,26 @@
             });
         };
 
+        $scope.alert = '';
+        $scope.showAlert = function(ev) {
+            $mdDialog.show(
+                $mdDialog.alert()
+                    .title('Vypis JSON Object-u vsetkych miestnosti...')
+                    .content(JSON.stringify($scope.rooms, null, '\t'))
+                    .ariaLabel('Password notification')
+                    .ok('Got it!')
+                    .targetEvent(ev)
+            );
+        };
+
         $scope.someVar = 'blue';
         $scope.someList = ['one', 'two', 'three'];
-        $scope.someFunctionUsedByTheHomePage = function () {
-            alert(JSON.stringify($scope.rooms, null, '\t'));
-        };
 
         init();
     });
 
 // The name of the module, followed by its dependencies (at the bottom to facilitate enclosure)
 }(angular.module("T-Res-App.home", [
-    'ngResource',
+    //'ngMaterial',
     'ui.router'
 ])));
