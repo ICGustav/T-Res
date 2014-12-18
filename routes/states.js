@@ -24,4 +24,62 @@ router.get('/write', function(req, res) {
   });
 });
 
+/* POST of adding a state. */
+router.post('/add',function(req, res){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  // Create a new message model, fill it up and save it to Mongodb
+  var AddStateSchema = mongoose.model('states');
+  var addedState = new AddStateSchema(req.body);
+
+  console.log("SAVE: State Object with state name: "+addedState.name + " and state number " + addedState.num);
+  return addedState.save(function (err) {
+    if (!err) {
+      res.send(addedState);
+    } else {
+      console.log(err);
+      res.send(err);
+    }
+  });
+});
+
+/* POST of modifying state. */
+router.post('/',function(req, res){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  // Create a new message model, fill it up and save it to Mongodb
+  console.log("SAVE: State Object with state name: "+req.body.name + " to state number: " + req.body.num);
+  return mongoose.model('states').findOne({_id: req.body._id}, function (err, state) {
+    if (!err) {
+      state.name = req.body.name;
+      state.num = req.body.num;
+      state.save();
+      console.log("modified");
+      return res.send(state);
+    } else {
+      console.log(err);
+    }
+  });
+});
+
+
+/* DELETE State from DB. */
+router.delete('/:id',function(req, res){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  // Create a new message model, fill it up and save it to Mongodb
+  console.log("DELETE: Object with _id: "+req.params.id);
+  return mongoose.model('states').findByIdAndRemove(req.params.id, function (err) {
+    if (!err) {
+      console.log("removed");
+      return function (){
+        mongoose.model('states').find({}).exec(function (err, states){
+            res.send(states);
+        });
+      };
+    } else {
+      console.log(err);
+    }
+  });
+});
 module.exports = router;

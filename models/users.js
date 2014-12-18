@@ -2,12 +2,15 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
-var userSchema = new Schema({
-	email: String,
-	firstname: String,
-	lastname: String,
-	age: Number,
-	mobil: String,
+var usersSchema = new Schema({
+	profile: {
+		type: Schema.ObjectId,
+		ref: 'profiles'
+	},
+	seats: [{
+		type: Schema.ObjectId,
+		ref: 'seats'
+	}],
 	userTypes: [{
 		type: Schema.ObjectId,
 		ref: 'userTypes'
@@ -16,6 +19,6 @@ var userSchema = new Schema({
 		type: Schema.ObjectId,
 		ref: 'address'
 	}
-},{_id:false});
+},{});
 
-mongoose.model('user', userSchema);
+mongoose.model('users', usersSchema);

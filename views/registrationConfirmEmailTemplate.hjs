@@ -1,0 +1,37 @@
+<div>
+    <table width=100% align=center>
+        <tr>
+            <td>
+                <a href="http://reservations.dsoft.eu" target="_blank"><img src='cid:headerLogo'></a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br/>
+                <b><font size=+2>{{ bodyTitle }}</font></b>
+            </td>
+        </tr>
+    </table>
+    <p>
+        {{ bodyContent_1 }}
+        <br/><br/>
+        {{ bodyContent_2 }}<br/>
+        {{ bodyContent_3 }}
+        <br/><br/>
+        {{ bodyContent_4 }}
+    </p>
+    <p>
+        {{ bodyContent_5 }}
+    </p>
+    <!-- tu mozu ist nejake buttons na acceptation od declaim -->
+    <table>
+        <tr><td>
+                <br/>
+                <!-- {{ signatureTitle }} --> <b>T-Res team</b>
+            </td></tr><br/>
+        <tr><td>
+                <i>{{ contactTitle }}:</i><br/>
+                <a href=’#’ style=“color:#000; text-decoration:none”>gustav.hlavac@dsoft.eu</a>
+            </td></tr>
+    </table>
+</div>

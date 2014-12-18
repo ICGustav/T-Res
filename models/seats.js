@@ -3,10 +3,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var seatsSchema = new Schema({
-	//user_id: {
-	//	type : Schema.ObjectId,
-	//	ref: 'users'
-	//},
+	pofile: {
+		type : Schema.ObjectId,
+		ref: 'profiles'
+	},
 	table: {
 		type : Schema.ObjectId,
 		ref: 'tables'

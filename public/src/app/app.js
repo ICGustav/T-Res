@@ -16,6 +16,7 @@
     'T-Res-App.parts',
     'T-Res-App.tables',
     'T-Res-App.seats',
+    'T-Res-App.states',
     'T-Res-App.login',
     'ngMaterial',
     'ngResource',

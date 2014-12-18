@@ -1,4 +1,5 @@
 var express = require('express');
+//var hbs = require('hbs');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -8,21 +9,31 @@ var mongoose = require('mongoose');
 var fs = require('fs');
 
 
+var test = require('./routes/test');
 var routes = require('./routes/index');
+
 var user = require('./routes/user');
+var users = require('./routes/users');
+var profiles = require('./routes/profiles');
+var address = require('./routes/address');
 var userTypes = require('./routes/userTypes');
+
 var rooms = require('./routes/rooms');
 var parts = require('./routes/parts');
 var tables = require('./routes/tables');
 var seats = require('./routes/seats');
 var states = require('./routes/states');
+var test1 = require('./routes/test1');
+//var main = require('./routes/main');
 
 
 var app = express();
 
+
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hjs');
+app.set('views', path.join(__dirname, 'views'));
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -44,12 +55,20 @@ fs.readdirSync(__dirname + '/models').forEach(function (filename) {
 
 app.use('/', routes);
 app.use('/user', user);
+app.use('/users', users);
 app.use('/userTypes', userTypes);
+app.use('/profiles', profiles);
+app.use('/address', address);
+
 app.use('/rooms', rooms);
 app.use('/parts', parts);
 app.use('/tables', tables);
 app.use('/seats', seats);
 app.use('/states', states);
+app.use('/test', test);
+app.use('/tes1', test1);
+
+//app.use('/main', main);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

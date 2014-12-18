@@ -64,16 +64,17 @@ router.post('/',function(req, res){
   console.log("SAVE: Seat Object with state: "+req.body.state + " to seat order " + req.body.order);
   return mongoose.model('seats').findOne({_id: req.body._id}, function (err, seat) {
     if (!err) {
-      seat.full_name = req.body.full_name;
-      //new mongoose.Schema.ObjectId();
+      seat.profile = req.body.profile;
       seat.state = req.body.state;
       seat.table = req.body.table;
+      seat.part = req.body.part;
+      seat.room = req.body.room;
       seat.save();
       mongoose.model('tables').findOne({_id: req.body.table}, function (err, table) {
         if (!err) {
           var seat = {_id: req.body._id};
           //var seat = req.body._id;
-          table.table_seats.push(seat);
+          table.seats.push(seat);
           table.save();
           console.log("modified");
           return res.send(seat);

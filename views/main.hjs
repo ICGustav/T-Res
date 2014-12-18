@@ -1,0 +1,45 @@
+{{! nothing here }}
+
+<html>
+<head>
+    <title>Handlebars examples with Express 4</title>
+</head>
+<body>
+
+<h3>Examples:</h3>
+<ul>
+    <li><a href='/simple'>Simple variable display</a></li>
+    <li><a href='/complex'>Complex object display</a></li>
+    <li><a href='/loop'>Using loops with '&#123;&#123;#each&#125;&#125;'</a></li>
+    <li><a href='/logic'>Logic in your templates with '&#123;&#123;#if&#125;&#125;'</a></li>
+</ul>
+
+<!--some value {{someValue}}-->
+
+<!--{{{body}}}-->
+
+<p>
+    The <em>basketballPlayers</em> array is a list of <em>objects</em>, each of which has a <em>name</em> and <em>team</em> property.
+
+    Inside of your <code>&#123&#123;#each&#125;&#125;</code> block, you can access the properties using <code>&#123&#123;this&#125;&#125;</code> with a dot ('.')
+    and the property name. So to display all the players and their teams, do this:
+
+    <code><pre>
+ &#123&#123;#basketballPlayers&#125;&#125;
+
+ &#123&#123;name&#125;&#125; plays for &#123&#123;team&#125;&#125; &lt;br&gt;
+
+ &#123&#123;/basketballPlayers&#125;&#125;
+ </pre></code>
+</p>
+
+<p>
+    {{#basketballPlayers}}
+
+        {{name}} plays for {{team}} <br>
+
+    {{/basketballPlayers}}
+</p>
+
+</body>
+</html>

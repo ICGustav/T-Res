@@ -1,0 +1,27 @@
+<h1>States</h1>
+
+<!--<h3>{{seats.length}} / {{(seats | filter: 'Reservované').length}} / {{(seats | filter: 'Zakúpené').length}}</h3>-->
+<br/>
+
+<div>
+    <h4>Filtruj: </h4>
+    <h5><input type="text" ng-model="SearchText" placeholder="Zadaj text pre filtráciu"/></h5>
+</div>
+<br/>
+
+<div ng-repeat="state in states | filter: SearchText | orderBy:'state.num'">
+    <span> Číslo stavu: </span>
+    <input type="text" ng-model="state.num" value="{{state.num}}"/>
+    <span> Názov stavu: </span>
+    <input type="text"ng-model="state.name" value="{{state.name}}"/>
+    <!--<select ng-init="changeState = states[state.num]" ng-model="changeState" ng-options="state.name for state in states" required></select>-->
+    <button class="btn btn-info" ng-click="SaveState(state)">Uložiť</button>
+    <div class="btn btn-primary" ng-click="CleanSeat(state)">Vyčistiť</div>
+    <div class="btn btn-danger" ng-click="DeleteSeat(state)">Vymazať</div>
+    <br/>
+</div>
+
+<div>
+    <input type="text" ng-model="addState.name" placeholder="Zadaj názov stavu"/>
+    <button class="btn btn-info" ng-click="AddState(addState)">Vytvoriť</button>
+</div>

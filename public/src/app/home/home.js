@@ -47,7 +47,7 @@
                     .title('Vypis JSON Object-u vsetkych miestnosti...')
                     .content(JSON.stringify($scope.rooms, null, '\t'))
                     .ariaLabel('Password notification')
-                    .ok('Got it!')
+                    .ok('Ok chapem!')
                     .targetEvent(ev)
             );
         };
