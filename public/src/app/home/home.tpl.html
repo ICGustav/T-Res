@@ -1,17 +1,268 @@
-<h1>Home of Table reservation app</h1>
-
-<p>Code it up</p>
-
-<p>
-    <span ng-bind="someVar" > </span>
-    <ul>
-        <li ng-repeat="item in someList">{{item}}</li>
-    </ul>
-    <button class="btn btn-primary" ng-click="someFunctionUsedByTheHomePage()">Click Me</button>
 
 
-<p>
+<div layout="row" layout-margin layout-fill layout-padding>
+    <div flex>
+
+        <div layout="column" layout-align="start center">
+            <div class="table">
+                <div class="tableWrapper pull-left">
+                    <div class="seats seatsTop">
+                        <md-button ng-click="showReservation($event)" class="md-fab md-primary seat" md-theme="grey"></md-button>
+                        <md-button ng-click="showReservation($event)" class="md-fab md-primary seat" md-theme="grey">
+
+                        </md-button>
+                        <md-button ng-click="showReservation($event)" class="md-fab md-warn seat" md-theme="grey">
+                        </md-button>
+                        <md-button ng-click="showReservation($event)" class="md-fab md-primary seat" md-theme="green">
+                            <span><img src='/assets/svg/ic_check_18px.svg'></span>
+                            <md-tooltip>
+                                Your seat
+                            </md-tooltip>
+                        </md-button>
+                        <md-button ng-click="showReservation($event)" class="md-fab md-primary seat" md-theme="yellow">
+                            <span><img src='/assets/svg/design/ic_person_18px.svg'></span>
+                        </md-button>
+                        <md-button ng-click="showReservation($event)" class="md-fab md-primary seat" md-theme="grey" ></md-button>
+
+
+                    </div>
+                    <md-card md-whiteframe layout layout-align="center center" class="tableCenter md-primary clearfix">Table 1</md-card>
+                    <div class="seats seatsBottom clearfix">
+                        <md-button class="md-fab md-primary seat" aria-label="Profile" md-theme="grey" ng-click="showReservation($event)"></md-button>
+                        <md-button  class="md-fab md-primary" md-theme="grey" ng-click="showReservation($event)"></md-button>
+                        <md-button ng-click="showReservation($event)" class="md-fab md-primary seat" md-theme="yellow" aria-label="check">
+                            <span><img src='/assets/svg/design/ic_person_18px.svg'></span>
+                        </md-button>
+                        <md-button ng-click="showReservation($event)" class="md-fab md-primary md-warn seat" >
+                            <span><img src='/assets/svg/design/ic_person_18px.svg'></span>
+                        </md-button>
+                        <md-button ng-click="showReservation($event)" class="md-fab md-primary seat" md-theme="grey" ></md-button>
+                        <md-button ng-click="showReservation($event)" class="md-fab md-primary seat" md-theme="yellow" aria-label="check">
+                            <span><img src='/assets/svg/design/ic_person_18px.svg'></span>
+                        </md-button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="table">
+                <div class="pull-left" style="opacity: 0">
+                    <md-button class="md-fab seat" ></md-button>
+                    <md-button class="md-fab seat" md-theme="grey"></md-button>
+                </div>
+                <div class="tableWrapper pull-left">
+
+                    <div class="seats seatsTop">
+                        <md-button class="md-fab md-primary seat" md-theme="grey"></md-button>
+                        <md-button class="md-fab md-primary" md-theme="grey"></md-button>
+                        <md-button class="md-fab md-warn seat" md-theme="grey" aria-label="Profile">
+                            <span><img src='/assets/svg/design/ic_person_18px.svg'></span>
+                        </md-button>
+                        <md-button class="md-fab md-primary seat" md-theme="grey" aria-label="Profile"></md-button>
+
+                        <!--<md-button class="md-fab md-primary seat" md-theme="purple" aria-label="Profile"></md-button>-->
+
+                    </div>
+                    <md-card md-whiteframe layout layout-align="center center" class="tableCenter md-primary clearfix">Table 2</md-card>
+                    <div class="seats seatsBottom clearfix">
+                        <md-button class="md-fab md-primary seat" md-theme="grey"></md-button>
+                        <md-button class="md-fab md-primary" md-theme="grey"></md-button>
+                        <md-button class="md-fab md-primary seat" md-theme="grey" aria-label="Profile"></md-button>
+                        <md-button class="md-fab md-primary seat" md-theme="grey" aria-label="Profile"></md-button>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="table">
+                <div class="tableWrapper pull-left">
+                    <div class="seats seatsTop">
+                        <md-button class="md-fab md-primary md-raised seat" md-theme="grey" ng-click="showReservation($event)"></md-button>
+                        <md-button class="md-fab md-primary" md-theme="grey" ng-click="showReservation($event)">
+
+                        </md-button>
+                        <md-button  class="md-fab md-primary md-warn seat" md-theme="grey" ng-click="showReservation($event)">
+                            <span><img src='/assets/svg/design/ic_person_18px.svg'></span>
+                        </md-button>
+                        <md-button class="md-fab md-primary seat" md-theme="grey" aria-label="check">
+
+                        </md-button>
+                        <md-button  class="md-fab md-primary seat" md-theme="grey" aria-label="Profile"></md-button>
+                        <md-button  class="md-fab md-primary md-warn seat" md-theme="grey" aria-label="Profile">
+                            <span><img src='/assets/svg/design/ic_person_18px.svg'></span>
+                        </md-button>
+
+
+                    </div>
+                    <md-card md-whiteframe layout layout-align="center center" class="tableCenter md-primary clearfix">Table 3</md-card>
+                    <div class="seats seatsBottom clearfix">
+                        <md-button class="md-fab md-primary seat" aria-label="Profile" md-theme="grey" ng-click="showReservation($event)"></md-button>
+                        <md-button class="md-fab md-primary" md-theme="grey" ng-click="showReservation($event)"></md-button>
+                        <md-button class="md-fab md-primary seat" md-theme="grey" aria-label="Profile"></md-button>
+                        <md-button class="md-fab md-primary md-warn seat" md-theme="grey" aria-label="Profile">
+                            <span><img src='/assets/svg/design/ic_person_18px.svg'></span>
+                        </md-button>
+                        <md-button class="md-fab md-primary seat" md-theme="grey" aria-label="Profile"></md-button>
+                        <md-button class="md-fab md-primary seat" md-theme="grey" aria-label="Profile"></md-button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="table">
+                <div class="tableWrapper pull-left">
+                    <div class="seats seatsTop">
+                        <md-button class="md-fab md-primary md-raised seat" md-theme="grey" ng-click="showReservation($event)"></md-button>
+                        <md-button class="md-fab md-primary" md-theme="grey" ng-click="showReservation($event)">
+
+                        </md-button>
+                        <md-button  class="md-fab md-primary md-warn seat" md-theme="grey" ng-click="showReservation($event)">
+                            <span><img src='/assets/svg/design/ic_person_18px.svg'></span>
+                        </md-button>
+                        <md-button class="md-fab md-primary seat" md-theme="grey" aria-label="check">
+
+                        </md-button>
+                        <md-button  class="md-fab md-primary seat" md-theme="grey" aria-label="Profile"></md-button>
+                        <md-button  class="md-fab md-primary md-warn seat" md-theme="grey" aria-label="Profile">
+                            <span><img src='/assets/svg/design/ic_person_18px.svg'></span>
+                        </md-button>
+
+
+                    </div>
+                    <md-card md-whiteframe layout layout-align="center center" class="tableCenter md-primary clearfix">Table 3</md-card>
+                    <div class="seats seatsBottom clearfix">
+                        <md-button class="md-fab md-primary seat" aria-label="Profile" md-theme="grey" ng-click="showReservation($event)"></md-button>
+                        <md-button class="md-fab md-primary" md-theme="grey" ng-click="showReservation($event)"></md-button>
+                        <md-button class="md-fab md-primary seat" md-theme="grey" aria-label="Profile"></md-button>
+                        <md-button class="md-fab md-primary md-warn seat" md-theme="grey" aria-label="Profile">
+                            <span><img src='/assets/svg/design/ic_person_18px.svg'></span>
+                        </md-button>
+                        <md-button class="md-fab md-primary seat" md-theme="grey" aria-label="Profile"></md-button>
+                        <md-button class="md-fab md-primary seat" md-theme="grey" aria-label="Profile"></md-button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <div>
+        <div layout="column" layout-align="start end">
+        <div class="table">
+            <div class="tableWrapper pull-left">
+                <div class="seats seatsTop">
+                    <md-button class="md-fab md-primary md-raised seat" md-theme="grey" ng-click="showReservation($event)">
+                    </md-button>
+                    <md-button ng-click="dialogBasic($event)" class="md-fab md-primary" md-theme="grey" ng-click="showReservation($event)">
+
+                    </md-button>
+                    <md-button  class="md-fab md-primary md-warn seat" md-theme="grey" ng-click="showReservation($event)">
+                        <span><img src='/assets/svg/design/ic_person_18px.svg'></span>
+                    </md-button>
+                    <md-button class="md-fab md-primary seat" md-theme="yellow" aria-label="check">
+                        <span><img src='/assets/svg/design/ic_person_18px.svg'></span>
+                    </md-button>
+                    <md-button  class="md-fab md-primary seat" md-theme="grey" aria-label="Profile"></md-button>
+                    <md-button  class="md-fab md-primary md-warn seat" md-theme="grey" >
+                        <span><img src='/assets/svg/design/ic_person_18px.svg'></span>
+                    </md-button>
+
+
+                </div>
+                <md-card md-whiteframe layout layout-align="center center" class="tableCenter md-primary clearfix">Table 4</md-card>
+                <div class="seats seatsBottom clearfix">
+                    <md-button class="md-fab md-primary seat" aria-label="Profile" md-theme="grey" ng-click="showReservation($event)"></md-button>
+                    <md-button class="md-fab md-primary" md-theme="grey" ng-click="showReservation($event)"></md-button>
+                    <md-button class="md-fab md-primary seat" md-theme="grey" aria-label="Profile"></md-button>
+                    <md-button class="md-fab md-primary md-warn seat" md-theme="grey" aria-label="Profile">
+                        <span><img src='/assets/svg/design/ic_person_18px.svg'></span>
+                    </md-button>
+                    <md-button class="md-fab md-primary seat" md-theme="grey" aria-label="Profile"></md-button>
+                    <md-button class="md-fab md-primary seat" md-theme="grey" aria-label="Profile"></md-button>
+                </div>
+            </div>
+            </div>
+
+        <div class="table">
+            <div class="tableWrapper pull-left">
+                <div class="seats seatsTop">
+                    <md-button class="md-fab md-primary md-raised seat" md-theme="grey" ng-click="showReservation($event)">
+                    </md-button>
+                    <md-button ng-click="dialogBasic($event)" class="md-fab md-primary" md-theme="grey" ng-click="showReservation($event)">
+
+                    </md-button>
+                    <md-button  class="md-fab md-primary md-warn seat" md-theme="grey" ng-click="showReservation($event)">
+                        <span><img src='/assets/svg/design/ic_person_18px.svg'></span>
+                    </md-button>
+                    <md-button class="md-fab md-primary seat" md-theme="yellow" aria-label="check">
+                        <span><img src='/assets/svg/design/ic_person_18px.svg'></span>
+                    </md-button>
+                    <md-button class="md-fab md-primary md-warn seat" md-theme="grey" aria-label="Profile">
+                        <span><img src='/assets/svg/design/ic_person_18px.svg'></span>
+                    </md-button>
+                    <md-button  class="md-fab md-primary md-warn seat" md-theme="grey" >
+                        <span><img src='/assets/svg/design/ic_person_18px.svg'></span>
+                    </md-button>
+
+
+                </div>
+                <md-card md-whiteframe layout layout-align="center center" class="tableCenter md-primary clearfix">Table 4</md-card>
+                <div class="seats seatsBottom clearfix">
+                    <md-button class="md-fab md-primary seat" aria-label="Profile" md-theme="grey" ng-click="showReservation($event)"></md-button>
+                    <md-button class="md-fab md-primary" md-theme="grey" ng-click="showReservation($event)"></md-button>
+                    <md-button class="md-fab md-primary seat" md-theme="grey" aria-label="Profile"></md-button>
+                    <md-button class="md-fab md-primary md-warn seat" md-theme="grey" aria-label="Profile">
+                        <span><img src='/assets/svg/design/ic_person_18px.svg'></span>
+                    </md-button>
+                    <md-button class="md-fab md-primary md-warn seat" md-theme="grey" aria-label="Profile">
+                        <span><img src='/assets/svg/design/ic_person_18px.svg'></span>
+                    </md-button>
+                    <md-button class="md-fab md-primary md-warn seat" md-theme="grey" aria-label="Profile">
+                        <span><img src='/assets/svg/design/ic_person_18px.svg'></span>
+                    </md-button>
+                </div>
+            </div>
+        </div>
+            <div class="table">
+                <div class="tableWrapper pull-left">
+                    <div class="seats seatsTop">
+                        <md-button class="md-fab md-primary md-raised seat" md-theme="grey" ng-click="showReservation($event)">
+                        </md-button>
+                        <md-button ng-click="dialogBasic($event)" class="md-fab md-primary" md-theme="grey" ng-click="showReservation($event)">
+
+                        </md-button>
+                        <md-button  class="md-fab md-primary md-warn seat" md-theme="grey" ng-click="showReservation($event)">
+                            <span><img src='/assets/svg/design/ic_person_18px.svg'></span>
+                        </md-button>
+                        <md-button class="md-fab md-primary seat" md-theme="yellow" aria-label="check">
+                            <span><img src='/assets/svg/design/ic_person_18px.svg'></span>
+                        </md-button>
+                        <md-button  class="md-fab md-primary seat" md-theme="grey" aria-label="Profile"></md-button>
+                        <md-button  class="md-fab md-primary md-warn seat" md-theme="grey" >
+                            <span><img src='/assets/svg/design/ic_person_18px.svg'></span>
+                        </md-button>
+
+
+                    </div>
+                    <md-card md-whiteframe layout layout-align="center center" class="tableCenter md-primary clearfix">Table 4</md-card>
+                    <div class="seats seatsBottom clearfix">
+                        <md-button class="md-fab md-primary seat" aria-label="Profile" md-theme="grey" ng-click="showReservation($event)"></md-button>
+                        <md-button class="md-fab md-primary" md-theme="grey" ng-click="showReservation($event)"></md-button>
+                        <md-button class="md-fab md-primary seat" md-theme="grey" aria-label="Profile"></md-button>
+                        <md-button class="md-fab md-primary md-warn seat" md-theme="grey" aria-label="Profile">
+                            <span><img src='/assets/svg/design/ic_person_18px.svg'></span>
+                        </md-button>
+                        <md-button class="md-fab md-primary seat" md-theme="grey" aria-label="Profile"></md-button>
+                        <md-button class="md-fab md-primary seat" md-theme="grey" aria-label="Profile"></md-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
     <ul ng-repeat="room in rooms">
         <h3>{{room.name}}</h3>
-        <li ng-repeat="part in room.parts"><a href="#" ng-click="Open('part.order')">{{part.name}}</a></li>
+        <li ng-repeat="part in parts | orderBy:'part.order'"><a href="#" ng-click="Open('part.order')">{{part.name}}</a></li>
     </ul>

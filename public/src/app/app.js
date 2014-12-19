@@ -2,11 +2,18 @@
 
     app.config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/home');
+
+
+
+
+
     });
 
-    app.controller('AppController', function ($scope) {
+    app.controller('AppController', function ($scope, $mdDialog, $mdToast) {
+
 
     });
+
 
 }(angular.module("T-Res-App", [
     'T-Res-App.home',
@@ -22,5 +29,7 @@
     'templates-common',
     'ui.router.state',
     'ui.router',
-    'firebase'
+    'firebase',
+    'ngMaterial'
 ])));
+

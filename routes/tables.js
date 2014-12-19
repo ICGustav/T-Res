@@ -65,7 +65,7 @@ router.post('/',function(req, res){
     if (!err) {
       // this is unique for every object
       table.order = req.body.order;
-      table.part = req.body.part;
+      table.part = req.body.part._id;
       table.save();
       console.log("modified");
       return res.send(table);

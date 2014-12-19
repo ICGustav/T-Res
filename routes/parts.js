@@ -38,7 +38,7 @@ router.post('/add',function(req, res){
     name: req.body.name,
     order: req.body.order,
     positioning: req.body.positioning,
-    room: req.body.room
+    room: req.body.room._id
   };
   var addedPart = new AddPartSchema(addPart);
 
