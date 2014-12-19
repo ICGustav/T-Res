@@ -14,19 +14,26 @@
 </head>
 <body>
     <header>
-        <nav class="container navbar-default">
-            <ul class="nav navbar-nav">
-                <li class="left" ui-sref-active="active">
-                    <a ui-sref="home">Home</a>
-                </li>
-                <li class="left" ui-sref-active="active">
-                    <a ui-sref="about">About</a>
-                </li>
-                <li class="right" ui-sref-active="active">
-                    <a ui-sref="login">Login</a>
-                </li>
-            </ul>
-        </nav>
+        <md-tabs class="md-accent" >
+            <md-tab id="rooms" ui-sref-active="active" aria-controls="tab1-content" ui-sref="rooms">
+                Rooms
+            </md-tab>
+            <md-tab id="parts" ui-sref-active="active" aria-controls="tab2-content" ui-sref="parts">
+                Parts
+            </md-tab>
+            <md-tab id="tables" ui-sref-active="active" aria-controls="tab3-content" ui-sref="tables">
+                Tables
+            </md-tab>
+            <md-tab id="seats" ui-sref-active="active" aria-controls="tab4-content" ui-sref="seats">
+                Seats
+            </md-tab>
+            <md-tab id="states" ui-sref-active="active" aria-controls="tab5-content" ui-sref="states">
+                States
+            </md-tab>
+            <md-tab id="users" ui-sref-active="active" aria-controls="tab6-content" ui-sref="users">
+                Users
+            </md-tab>
+        </md-tabs>
     </header>
 
     <div class="container" ui-view="main"></div>

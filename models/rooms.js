@@ -3,10 +3,12 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var roomsSchema = new Schema({
-	parts: [{
-		type : Schema.ObjectId,
-		ref: 'parts'
-	}],
+	parts: [
+		{_id: {
+			type : Schema.ObjectId,
+			ref: 'parts'
+			}
+		}],
 	name: String,
 	positioning: String,
 	order: Number

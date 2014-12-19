@@ -7,12 +7,11 @@ var userProfilesSchema = new Schema({
 		type: Schema.ObjectId,
 		ref: 'users'
 	},
-	name: String,
 	first_name: String,
 	last_name: String,
 	below_18: Boolean,
 	email: String,
-	mobile: String,
+	mobil: String,
 	modified: { type: Date, default: Date.now }
 },{});
 

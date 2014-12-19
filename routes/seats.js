@@ -8,8 +8,10 @@ router.get('/', function(req, res) {
   mongoose.model('seats').find({}).sort({order:1}).exec(function (err, seats){
     mongoose.model('seats').populate(seats, {path: 'state'}, function(err, seats) {
       mongoose.model('seats').populate(seats, {path: 'table'}, function(err, seats) {
-        console.log(seats);
-        res.send(seats);
+        mongoose.model('seats').populate(seats, {path: 'profile'}, function(err, seats) {
+          console.log(seats);
+          res.send(seats);
+        });
       });
     });
   });
@@ -91,12 +93,18 @@ router.post('/',function(req, res){
 /* GET seats and export them to a file. */
 router.get('/write', function(req, res) {
   mongoose.model('seats').find({}).sort({order:1}).exec(function (err, seats){
-    var outputFilename = "data/seats_out.json";
+    mongoose.model('seats').populate(seats, {path: 'state'}, function(err, seats) {
+      mongoose.model('seats').populate(seats, {path: 'table'}, function(err, seats) {
+        mongoose.model('seats').populate(seats, {path: 'profile'}, function(err, seats) {
+          var outputFilename = "data/seats_out.json";
 
-    fs.writeFileSync(outputFilename, JSON.stringify(seats, null, '\t'));
-    console.log("JSON saved to " + outputFilename);
+          fs.writeFileSync(outputFilename, JSON.stringify(seats, null, '\t'));
+          console.log("JSON saved to " + outputFilename);
 
-    res.send(seats);
+          res.send(seats);
+        });
+      });
+    });
   });
 });
 

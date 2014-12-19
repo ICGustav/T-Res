@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 var userTypesSchema = new Schema({
 	name: String,
-	type: Number
-},{_id:false});
+	num: Number
+},{});
 
-mongoose.model('userTypes', userTypesSchema);
+mongoose.model('user_types', userTypesSchema);

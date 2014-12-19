@@ -11,6 +11,7 @@
 }(angular.module("T-Res-App", [
     'T-Res-App.home',
     'T-Res-App.about',
+    'T-Res-App.admin',
     'T-Res-App.profile',
     'T-Res-App.rooms',
     'T-Res-App.parts',
@@ -18,6 +19,9 @@
     'T-Res-App.seats',
     'T-Res-App.states',
     'T-Res-App.login',
+    'T-Res-App.users',
+    'T-Res-App.userTypes',
+    'T-Res-App.profiles',
     'ngMaterial',
     'ngResource',
     'templates-app',

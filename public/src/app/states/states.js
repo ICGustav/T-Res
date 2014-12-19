@@ -35,7 +35,7 @@
         // clean State
         $scope.CleanState = function (state) {
             state.name =  "";
-            console.log("State: " + state.name + '\t Number of selected state: '+ state.num + "cleaning");
+            console.log("State: '" + state.name + "'\t Number of selected state: "+ state.num + " cleaning");
             var States = $resource('/states');
             States.save(state);
             $scope.states = States.query({});
@@ -43,7 +43,7 @@
 
         // delete State
         $scope.DeleteState = function (state) {
-            console.log("State: " + state.name);
+            console.log("DELETE State name: '" + state.name + "'");
             var State = $resource('/states/:id'),
                 States = $resource('/states');
             State.delete({id: state._id});
@@ -54,8 +54,10 @@
         $scope.AddState = function (state) {
 
             if (state === undefined) {
-                var stateTemplate = {num: $scope.states.length, name:""};
-                state = stateTemplate;
+                state = {
+                    num: $scope.states.length,
+                    name:""
+                };
             } else {
                 state.num = $scope.states.length;
             }
@@ -68,9 +70,6 @@
                 $scope.addState = undefined;
                 return data;
             });
-
-
-
         };
 
         init();

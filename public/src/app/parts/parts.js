@@ -21,33 +21,25 @@
             var States = $resource('/states');
             $scope.states = States.query({});
 
+            var Rooms = $resource('/rooms');
+            $scope.rooms = Rooms.query({});
+
             var Tables = $resource('/tables');
             $scope.tables = Tables.query({});
 
             var Parts = $resource('/parts');
             $scope.parts = Parts.query({});
 
-            var Rooms = $resource('/rooms');
-            $scope.rooms = Rooms.query({});
-
         };
 
         // modifying Part if input box
-        $scope.SavePart = function (part) {
-            console.log("Selected part order: "+ part.order);
+        $scope.SavePart = function (part, changePart) {
+            console.log("Selected part order: " + part.order + " and name: " + changePart.room._id);
             var Parts = $resource('/parts');
+            part.room = changePart.room._id;
             Parts.save(part);
             $scope.parts = Parts.query({});
         };
-
-        // modifying Part if selectbox
-        //$scope.SavePart = function (part, changedPart) {
-        //    console.log("Selected Part order: "+ changedPart.order);
-        //    part.order = changedPart.order;
-        //    var Parts = $resource('/parts');
-        //    Parts.save(part);
-        //    $scope.parts = Parts.query({});
-        //};
 
         // clean Part
         $scope.CleanPart = function (part) {

@@ -30,12 +30,12 @@ router.post('/add',function(req, res){
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   // Create a new message model, fill it up and save it to Mongodb
   var AddStateSchema = mongoose.model('states');
-  var addedState = new AddStateSchema(req.body);
+  var addState = new AddStateSchema(req.body);
 
-  console.log("SAVE: State Object with state name: "+addedState.name + " and state number " + addedState.num);
-  return addedState.save(function (err) {
+  console.log("SAVE: State Object with state name: "+addState.name + " and state number " + addState.num);
+  return addState.save(function (err) {
     if (!err) {
-      res.send(addedState);
+      res.send(addState);
     } else {
       console.log(err);
       res.send(err);

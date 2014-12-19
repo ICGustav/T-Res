@@ -67,10 +67,10 @@ router.post('/',function(req, res){
       part.positioning = req.body.positioning;
       part.room = req.body.room;
       part.save();
+      console.log(part);
       mongoose.model('rooms').findOne({_id: req.body.room}, function (err, room) {
         if (!err) {
           var part = {_id: req.body._id};
-          //var seat = req.body._id;
           room.parts.push(part);
           room.save();
           console.log("modified");

@@ -62,28 +62,36 @@
 
         // adding new Seat
         $scope.AddSeat = function (seat) {
-            var seatTemplate = {order: $scope.seats.length, below_18: false};
+            var seatTemplate = {
+                order: $scope.seats.length,
+                profile: {
+                    first_name: "",
+                    last_name: "",
+                    email: "",
+                    mobil: "",
+                    below_18: false
+                }
+            };
             var States = $resource('/states');
             var state = States.query({}, function(){
                 if (seat === undefined) {
                     seat = {
-                        full_name: "",
+                        profile: seatTemplate.profile,
                         order: seatTemplate.order,
-                        below_18: seatTemplate.below_18,
                         state: state[0]._id,
                         table: $scope.tables[0]._id
                     };
                 } else {
                     seat.state = state[1]._id;
                     seat.order = seatTemplate.order;
-                    seat.below_18 = seatTemplate.below_18;
+                    seat.profile.below_18 = seatTemplate.profile.below_18;
                     if (seat.table === undefined) {
                         seat.table = $scope.tables[0]._id;
                     } else {
                         seat.table = seat.table._id;
                     }
                 }
-                console.log("Seat: " + seat.order + '\t Selected state: '+ state[0].name);
+                console.log("Adding Seat: '" + seat.order + "'\t Selected state: '"+ state[0].name + "'");
                 var newSeat = $resource('/seats/add');
                 newSeat.save(seat);
                 var Seats = $resource('/seats');

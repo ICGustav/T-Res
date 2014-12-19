@@ -16,7 +16,7 @@ var user = require('./routes/user');
 var users = require('./routes/users');
 var profiles = require('./routes/profiles');
 var address = require('./routes/address');
-var userTypes = require('./routes/userTypes');
+var userTypes = require('./routes/user-types');
 
 var rooms = require('./routes/rooms');
 var parts = require('./routes/parts');
@@ -56,7 +56,7 @@ fs.readdirSync(__dirname + '/models').forEach(function (filename) {
 app.use('/', routes);
 app.use('/user', user);
 app.use('/users', users);
-app.use('/userTypes', userTypes);
+app.use('/user-types', userTypes);
 app.use('/profiles', profiles);
 app.use('/address', address);
 

@@ -10,22 +10,64 @@
 <br/>
 
 <div ng-repeat="seat in seats | filter: SearchText | orderBy:'seat.order'">
-    {{seat.order+1}}
-    <input type="text" ng-model="seat.full_name" value="{{seat.full_name}}"/>
-    <span> Miesto: </span>
-    <select ng-init="changeSeat.state = states[seat.state.num]" ng-model="changeSeat.state" ng-options="state.name for state in states" required></select>
-    <span> Stôl číslo: </span>
-    <select ng-init="changeSeat.table = tables[seat.table.order]" ng-model="changeSeat.table" ng-options="table.order for table in tables" required></select>
+    <md-content>
+        <md-card layout-padding="30">
+            <h2> Vlastnosti miesta: </h2>
+            <span> Poradové číslo: </span>
+            <input type="text" ng-model="seat.order" value="{{seat.order}}"/>
+            <span> Miesto: </span>
+            <select ng-init="changeSeat.state = states[seat.state.num]" ng-model="changeSeat.state" ng-options="state.name for state in states" required></select>
+            <span> Stôl číslo: </span>
+            <select ng-init="changeSeat.table = tables[seat.table.order]" ng-model="changeSeat.table" ng-options="table.order for table in tables" required></select>
+            <br/>
+            <span> Krstné meno: </span>
+            <input type="text" ng-model="seat.profile.first_name" value="{{seat.profile.first_name}}"/>
+            <span> Priezvisko: </span>
+            <input type="text" ng-model="seat.profile.last_name" value="{{seat.profile.last_name}}"/>
+            <br/>
+            <span> email: </span>
+            <input type="text" ng-model="seat.profile.email" value="{{seat.profile.email}}"/>
+            <span> mobil: </span>
+            <input type="text" ng-model="seat.profile.mobil" value="{{seat.profile.mobil}}"/>
+            <br/>
+            <div layout="row" layout-align="start center">
+                <span layout="center"> Menej ako 18 rokov: </span>
+                <md-checkbox aria-label="{{seat.profile.below_18}}" ng-model="seat.profile.below_18"> {{seat.profile.below_18}}</md-checkbox>
+            </div>
+            <button class="btn btn-info" ng-click="SaveSeat(seat, changeSeat)">Uložiť</button>
+            <div class="btn btn-primary" ng-click="CleanSeat(seat)">Vyčistiť</div>
+            <div class="btn btn-danger" ng-click="DeleteSeat(seat)">Vymazať</div>
+            <br/><br/>
+        </md-card>
+    </md-content>
 
-    <button class="btn btn-info" ng-click="SaveSeat(seat, changeSeat)">Uložiť</button>
-    <div class="btn btn-primary" ng-click="CleanSeat(seat)">Vyčistiť</div>
-    <div class="btn btn-danger" ng-click="DeleteSeat(seat)">Vymazať</div>
-    <br/>
 </div>
-
+<br/><br/>
 <div>
-    <input type="text" ng-model="addSeat.full_name" placeholder="Zadaj celé meno"/>
-    <span> Stôl číslo: </span>
-    <select ng-model="addSeat.table" ng-options="table.order for table in tables" required></select>
-    <button class="btn btn-info" ng-click="AddSeat(addSeat)">Vytvoriť</button>
+    <md-content>
+        <md-card layout-padding="10">
+            <h2> Pridať miesto na sedenie: </h2>
+            <span> Poradové číslo: </span>
+            <input type="text" ng-model="addSeat.order" value="{{addSeat.order}}"/>
+            <span> Stôl číslo: </span>
+            <select ng-model="addSeat.table" ng-options="table.order for table in tables" required></select>
+            <br/>
+            <span> Krstné meno: </span>
+            <input type="text" ng-model="addSeat.profile.first_name" value="{{addSeat.profile.first_name}}"/>
+            <span> Priezvisko: </span>
+            <input type="text" ng-model="addSeat.profile.last_name" value="{{addSeat.profile.last_name}}"/>
+            <br/>
+            <span> eMail: </span>
+            <input type="text" ng-model="addSeat.profile.email" value="{{addSeat.profile.email}}"/>
+            <span> Mobil: </span>
+            <input type="text" ng-model="addSeat.profile.mobil" value="{{addSeat.profile.mobil}}"/>
+            <div layout="row" layout-align="start center">
+                <span> Menej ako 18 rokov: </span>
+                <md-checkbox aria-label="{{addSeat.profile.below_18}}" ng-model="addSeat.profile.below_18"> {{addSeat.profile.below_18}} </md-checkbox>
+            </div>
+            <br/>
+            <br/>
+            <button class="btn btn-info" ng-click="AddSeat(addSeat)">Vytvoriť</button>
+        </md-card>
+    </md-content>
 </div>
