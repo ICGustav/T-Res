@@ -1,27 +1,45 @@
-<h1>States</h1>
-
-<h3>{{states.length}} / {{(states | filter: SearchText).length}}</h3>
-<br/>
-
-<div>
-    <h4>Filtruj: </h4>
-    <h5><input type="text" ng-model="SearchText" placeholder="Zadaj text pre filtráciu"/></h5>
+<div layout="row" layout-sm="column" layout-align="start center">
+    <md-text-float label="Zadaj text pre filtráciu" ng-model="SearchText"></md-text-float>
+    <h2>{{states.length}} / {{(states | filter: SearchText).length}}</h2>
 </div>
-<br/>
-
-<div ng-repeat="state in states | filter: SearchText | orderBy:'num'">
-    <span> Číslo stavu: </span>
-    <input type="text" ng-model="state.num" value="{{state.num}}"/>
-    <span> Názov stavu: </span>
-    <input type="text"ng-model="state.name" value="{{state.name}}"/>
+<md-card layout-padding>
+    <md-toolbar class="md-theme-light">
+        <h1 class="md-toolbar-tools">
+            <span>Zoznam stavov miest uložených v Databáze</span>
+        </h1>
+    </md-toolbar>
+    <md-content>
+        <md-list>
+            <md-item ng-repeat="state in states | filter: SearchText | orderBy:'num'">
+                <md-item-content>
+                    <div layout="column">
+                        <div class="md-tile-content" layout="row" class="md-padding">
+                            <md-text-float label="Poradové číslo stavu" ng-model="state.num" disabled></md-text-float>
+                            <md-text-float label="Pomenovanie stavu" ng-model="state.name" disabled></md-text-float>
     <!--<select ng-init="changeState = states[state.num]" ng-model="changeState" ng-options="state.name for state in states" required></select>-->
-    <button class="btn btn-info" ng-click="SaveState(state)">Uložiť</button>
-    <div class="btn btn-primary" ng-click="CleanState(state)">Vyčistiť</div>
-    <div class="btn btn-danger" ng-click="DeleteState(state)">Vymazať</div>
-    <br/>
-</div>
+                            <md-button class="md-raised md-primary" ng-click="SaveState(state)">Uložiť</md-button>
+                            <md-button class="md-raised " ng-click="CleanState(state)">Vyčistiť</md-button>
+                            <md-button class="md-raised md-warn" ng-click="DeleteState(state)">Vymazať</md-button>
+                        </div>
+                    </div>
+                </md-item-content>
+            </md-item>
+        </md-list>
+    </md-content>
+</md-card>
 
-<div>
-    <input type="text" ng-model="addState.name" placeholder="Zadaj názov stavu"/>
-    <button class="btn btn-info" ng-click="AddState(addState)">Vytvoriť</button>
-</div>
+<md-card layout-padding>
+    <md-toolbar class="md-theme-light">
+        <h1 class="md-toolbar-tools">
+            <span>Pridať nový stav miesta do Databázy</span>
+        </h1>
+    </md-toolbar>
+    <md-content>
+        <div layout="column">
+            <div class="md-tile-content" layout="row" class="md-padding">
+                <md-text-float label="Zadaj pomenovanie stavu" ng-model="addState.num" disabled></md-text-float>
+                <md-button class="md-raised md-primary" ng-click="AddState(addState)">Vytvoriť</md-button>
+            </div>
+        </div>
+    </md-content>
+</md-card>

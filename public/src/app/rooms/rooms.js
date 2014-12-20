@@ -13,9 +13,13 @@
         });
     });
 
-    app.controller('RoomsController', function ($scope, $resource) {
+    app.controller('RoomsController', function ($scope, $resource, $location, $filter) {
 
         var init = function() {
+            //var state = $location.path().slice(1);
+            //var tab = $filter('filter')($scope.tabs, {'route': state});
+            //$scope.selectedIndex = 0;
+            //console.log("Filter expression: " + state + ", Filered Tab: " + tab.title + ", SelectedIndex: " + tab.order);
             // A definitive place to put everything that needs to run when the controller starts. Avoid
             //  writing any code outside of this function that executes immediately.
             var States = $resource('/states');

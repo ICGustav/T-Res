@@ -13,29 +13,15 @@
     <script type="text/javascript" src="<%= file %>"></script><% }); %>
 </head>
 <body>
-    <header>
-        <md-tabs class="md-accent" >
-            <md-tab id="rooms" ui-sref-active="active" aria-controls="tab1-content" ui-sref="rooms">
-                Rooms
-            </md-tab>
-            <md-tab id="parts" ui-sref-active="active" aria-controls="tab2-content" ui-sref="parts">
-                Parts
-            </md-tab>
-            <md-tab id="tables" ui-sref-active="active" aria-controls="tab3-content" ui-sref="tables">
-                Tables
-            </md-tab>
-            <md-tab id="seats" ui-sref-active="active" aria-controls="tab4-content" ui-sref="seats">
-                Seats
-            </md-tab>
-            <md-tab id="states" ui-sref-active="active" aria-controls="tab5-content" ui-sref="states">
-                States
-            </md-tab>
-            <md-tab id="users" ui-sref-active="active" aria-controls="tab6-content" ui-sref="users">
-                Users
-            </md-tab>
-        </md-tabs>
-    </header>
-
+    <md-toolbar md-scroll-shrink>
+        <div class="md-toolbar-tools">
+            <md-tabs class="md-accent" md-selected="-1">
+                <md-tab id="tab{{tab.order}}" ng-repeat="tab in tabs" md-on-select="announceSelected(tab)" md-on-deselect="announceDeselected(tab)" label="{{tab.title}}"
+                        ui-sref-active="active" aria-controls="tab$index-content" ui-sref="{{tab.route}}">
+                </md-tab>
+            </md-tabs>
+        </div>
+    </md-toolbar>
     <div class="container" ui-view="main"></div>
 
     <footer class="container">
