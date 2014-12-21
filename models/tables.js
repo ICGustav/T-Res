@@ -16,6 +16,10 @@ var tablesSchema = new Schema({
 		type: Schema.ObjectId,
 		ref: 'parts'
 	},
+	room: {
+		type: Schema.ObjectId,
+		ref: 'rooms'
+	},
 	modified: { type: Date, default: Date.now }
 },{});
 

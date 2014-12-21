@@ -56,7 +56,6 @@
         $scope.CleanRoom = function (room) {
             room.name =  "";
             room.positioning = "";
-            room.order = $scope.rooms.length;
             console.log("Room: " + room.order);
             var Rooms = $resource('/rooms');
             Rooms.save(room);

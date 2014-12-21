@@ -49,6 +49,7 @@
         $scope.CleanPart = function (part) {
             part.name =  "";
             part.positioning = "";
+            part.room = part.room._id;
             console.log("Part: " + part.order);
             var Parts = $resource('/parts');
             Parts.save(part);

@@ -19,21 +19,24 @@
             $scope.selectedIndex = 2;
             // A definitive place to put everything that needs to run when the controller starts. Avoid
             //  writing any code outside of this function that executes immediately.
-            var States = $resource('/states');
-            $scope.states = States.query({});
-
-            var Tables = $resource('/tables');
-            $scope.tables = Tables.query({});
+            var Rooms = $resource('/rooms');
+            $scope.rooms = Rooms.query({});
 
             var Parts = $resource('/parts');
             $scope.parts = Parts.query({});
 
+            var Tables = $resource('/tables');
+            $scope.tables = Tables.query({});
+
+
 
         };
 
-        // modifying Seat if input box
-        $scope.SaveTable = function (table) {
-            console.log("Selected table order: "+ table.order + " and assigned to tha part_id: " + table.part);
+        // modifying Table
+        $scope.SaveTable = function (table, changeTable) {
+            table.part = changeTable.part._id;
+            table.room = changeTable.room._id;
+            console.log("Selected table order: "+ table.order + " and assigned to tha part_id: " + table.part + " and room_id: " + table.room);
             var Tables = $resource('/tables');
             Tables.save(table);
             $scope.tables = Tables.query({});
@@ -50,13 +53,13 @@
 
         // clean Seat
         $scope.CleanTable = function (table) {
-        //    table.full_name =  "";
-        //    table.below_18 = false;
-        //    table.state = $scope.states[0]._id;
-        //    console.log("Table: " + table.order);
-        //    var Tables = $resource('/tables');
-        //    Tables.save(table);
-        //    $scope.tables = Tables.query({});
+            table.room =  "";
+            table.part = "";
+        //    table.order = $scope.tables.length;
+            console.log("Table: " + table.order);
+            var Tables = $resource('/tables');
+            Tables.save(table);
+            $scope.tables = Tables.query({});
         };
 
         // delete Table
@@ -69,12 +72,11 @@
         };
 
         // adding new Table
-        $scope.AddTable = function () {
-            var table = {
-                            order: $scope.tables.length,
-                            part: $scope.parts[0]._id
-                        };
-            console.log("Seat: " + table.order);
+        $scope.AddTable = function (table) {
+            if (table === undefined) {
+                table = { order: $scope.tables.length };
+            }
+            console.log("Table order: " + table.order + " - ADDED");
 
             var newTable = $resource('/tables/add');
             newTable.save(table);

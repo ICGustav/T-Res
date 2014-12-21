@@ -7,8 +7,10 @@ var fs = require('fs');
 router.get('/', function(req, res) {
   mongoose.model('tables').find({}).sort({order:1}).exec(function (err, tables){
     mongoose.model('tables').populate(tables, {path: 'part'}, function(err, tables) {
-      mongoose.model('tables').populate(tables,{path:'seats._id'}, function(err, tables){
-        res.send(tables);
+      mongoose.model('tables').populate(tables, {path: 'room'}, function(err, tables) {
+        mongoose.model('tables').populate(tables,{path:'seats._id'}, function(err, tables){
+          res.send(tables);
+        });
       });
     });
   });
@@ -66,6 +68,7 @@ router.post('/',function(req, res){
       // this is unique for every object
       table.order = req.body.order;
       table.part = req.body.part;
+      table.room = req.body.room;
       table.save();
       console.log("modified");
       return res.send(table);
