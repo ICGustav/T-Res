@@ -13,15 +13,15 @@
     <script type="text/javascript" src="<%= file %>"></script><% }); %>
 </head>
 <body>
-    <md-toolbar md-scroll-shrink>
-        <div class="md-toolbar-tools">
-            <md-tabs class="md-accent" md-selected="-1">
-                <md-tab id="tab{{tab.order}}" ng-repeat="tab in tabs" md-on-select="announceSelected(tab)" md-on-deselect="announceDeselected(tab)" label="{{tab.title}}"
-                        ui-sref-active="active" aria-controls="tab$index-content" ui-sref="{{tab.route}}">
-                </md-tab>
-            </md-tabs>
-        </div>
-    </md-toolbar>
+    <!--<md-toolbar md-scroll-shrink>-->
+        <!--<div class="md-toolbar-tools">-->
+            <!--<md-tabs class="md-accent" md-selected="-1">-->
+                <!--<md-tab id="tab{{tab.order}}" ng-repeat="tab in tabs" md-on-select="announceSelected(tab)" md-on-deselect="announceDeselected(tab)" label="{{tab.title}}"-->
+                        <!--ui-sref-active="active" aria-controls="tab$index-content" ui-sref="{{tab.route}}">-->
+                <!--</md-tab>-->
+            <!--</md-tabs>-->
+        <!--</div>-->
+    <!--</md-toolbar>-->
     <div class="container" ui-view="main"></div>
 
     <footer class="container">
