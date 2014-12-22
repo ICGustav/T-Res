@@ -30,15 +30,10 @@ router.delete('/:id',function(req, res){
   return mongoose.model('seats').findByIdAndRemove(req.params.id, function (err) {
     if (!err) {
       console.log("removed");
-      return function (){
-        mongoose.model('seats').find({}).exec(function (err, seats){
-          mongoose.model('seats').populate(seats, {path: 'state'}, function(err, seats) {
-            res.send(seats);
-          });
-        });
-      };
+      return res.status(200);
     } else {
       console.log(err);
+      return res.send(err);
     }
   });
 });
@@ -48,18 +43,57 @@ router.post('/add',function(req, res){
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   // Create a new message model, fill it up and save it to Mongodb
-  var AddSeatSchema = mongoose.model('seats');
-  var addSeat = new AddSeatSchema(req.body);
-  console.log("SAVE: Seat Object with state: "+addSeat.state + " to seat order " + addSeat.order);
-
-  return addSeat.save(function (err) {
-    if (!err) {
-      res.status(200);
-    } else {
-      console.log(err);
-      res.send(err);
-    }
-  });
+  if (req.body.profile !== undefined) {
+    // Creating a Profile
+    var AddProfileSchema = mongoose.model('profiles');
+    var addProfile = new AddProfileSchema(req.body.profile);
+    addProfile.save(function (err) {
+      if (!err) {
+        // Creating a Seat
+        var AddSeatSchema = mongoose.model('seats');
+        var addSeat = new AddSeatSchema();
+        // Adding profile_id to the Seat
+        addSeat.profile = addProfile._id;
+        addSeat.order = req.body.order;
+        addSeat.room = req.body.room;
+        addSeat.part = req.body.part;
+        addSeat.table = req.body.table;
+        addSeat.state = req.body.state;
+        console.log("SAVE: Seat Object with state: " + addSeat.state + " to seat order " + addSeat.order);
+        return addSeat.save(function (err) {
+          if (!err) {
+            res.send(200);
+          } else {
+            console.log(err);
+            res.send(err);
+          }
+        });
+      } else {
+        console.log(err);
+        res.send(err);
+      }
+    });
+  } else {
+    // Creating a Seat
+    var AddSeatSchema = mongoose.model('seats');
+    var addSeat = new AddSeatSchema();
+    // Adding profile_id to the Seat
+    addSeat.profile = undefined;
+    addSeat.order = req.body.order;
+    addSeat.room = req.body.room;
+    addSeat.part = req.body.part;
+    addSeat.table = req.body.table;
+    addSeat.state = req.body.state;
+    console.log("SAVE: Seat Object with state: " + addSeat.state + " to seat order " + addSeat.order);
+    return addSeat.save(function (err) {
+      if (!err) {
+        res.send(200);
+      } else {
+        console.log(err);
+        res.send(err);
+      }
+    });
+  }
 });
 
 /* POST of modifying seat. */

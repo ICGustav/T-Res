@@ -7,7 +7,7 @@ var fs = require('fs');
 router.get('/', function(req, res) {
   mongoose.model('rooms').find({}).sort({order:1}).exec(function (err, rooms){
     mongoose.model('rooms').populate(rooms, {path: 'parts'}, function(err, rooms) {
-      console.log(rooms);
+      console.log("Sended Array of Rooms...");
       res.send(rooms);
     });
   });

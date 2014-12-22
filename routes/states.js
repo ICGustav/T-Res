@@ -6,6 +6,7 @@ var fs = require('fs');
 /* GET states listing. */
 router.get('/', function(req, res) {
   mongoose.model('states').find({}).exec(function (err, states){
+    console.log("States sent to client...");
     res.send(states);
   });
 });
@@ -31,7 +32,6 @@ router.post('/add',function(req, res){
   // Create a new message model, fill it up and save it to Mongodb
   var AddStateSchema = mongoose.model('states');
   var addState = new AddStateSchema(req.body);
-
   console.log("SAVE: State Object with state name: "+addState.name + " and state number " + addState.num);
   return addState.save(function (err) {
     if (!err) {

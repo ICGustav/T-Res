@@ -8,7 +8,7 @@ router.get('/', function(req, res) {
   mongoose.model('parts').find({}).sort({order:1}).exec(function (err, parts){
     //mongoose.model('parts').populate(parts, {path: 'tables._id'}, function(err, parts) {
       mongoose.model('parts').populate(parts, {path: 'room'}, function(err, parts) {
-        console.log(parts);
+        console.log("Parts sent to client...");
         res.send(parts);
       });
     //});
