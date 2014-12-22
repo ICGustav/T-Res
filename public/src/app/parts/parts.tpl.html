@@ -20,9 +20,11 @@
                             <md-text-float label="Pozícia časti v miestnosti slovom" ng-model="part.positioning" disabled></md-text-float>
                             <span> Miestnosť: </span>
                             <select ng-init="changePart.room = rooms[part.room.order]" ng-model="changePart.room" ng-options="room.name for room in rooms" required></select>
-                            <md-button class="md-raised md-primary" ng-click="SavePart(part, changePart)"> Uložiť </md-button>
-                            <md-button class="md-raised" ng-click="CleanPart(part)"> Vyčistiť </md-button>
-                            <md-button class="md-raised md-warn" ng-click="DeletePart(part)"> Vymazať </md-button>
+                            <div layout="row" layout-sm="column" layout-margin layout-align="left center">
+                                <md-button class="md-raised md-primary" ng-click="SavePart(part, changePart)"> Uložiť </md-button>
+                                <md-button class="md-raised" ng-click="CleanPart(part)"> Vyčistiť </md-button>
+                                <md-button class="md-raised md-warn" ng-click="DeletePart(part)"> Vymazať </md-button>
+                            </div>
                         </div>
                     </md-item-content>
                     <!--<md-divider ng-if="!$last"></md-divider>-->

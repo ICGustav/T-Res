@@ -10,18 +10,18 @@
 <br/>
 
 <div ng-repeat="user in users | filter: SearchText | orderBy:'profile.email'">
-    <span> Číslo stavu: </span>
-    <input type="text" ng-model="user.num" value="{{user.num}}"/>
-    <span> Názov stavu: </span>
-    <input type="text"ng-model="user.name" value="{{user.name}}"/>
+    <!--<md-text-float label="{{profile.first_name}}" ng-model="profile.first_name" disabled></md-text-float>-->
     <!--<select ng-init="changeState = states[state.num]" ng-model="changeState" ng-options="state.name for state in states" required></select>-->
-    <button class="btn btn-info" ng-click="SaveUser(user)">Uložiť</button>
-    <div class="btn btn-primary" ng-click="CleanUser(user)">Vyčistiť</div>
-    <div class="btn btn-danger" ng-click="DeleteUser(user)">Vymazať</div>
-    <br/>
+    <div layout="row" layout-sm="column" layout-margin layout-align="left center">
+        <md-button class="md-raised md-primary" ng-click="SaveUser(user)">Uložiť</md-button>
+        <md-button class="md-raised" ng-click="CleanUser(user)">Vyčistiť</md-button>
+        <md-button class="md-raised md-warn" ng-click="DeleteUser(user)">Vymazať</md-button>
+    </div>
 </div>
 
 <div>
     <input type="text" ng-model="addUser.profile.first_name" placeholder="Zadaj názov stavu"/>
-    <button class="btn btn-info" ng-click="AddUser(addUser)">Vytvoriť</button>
+    <div layout="row" layout-sm="column" layout-margin layout-align="left center">
+        <md-button class="md-raised md-primary" ng-click="AddUser(addUser)">Vytvoriť</md-button>
+    </div>
 </div>

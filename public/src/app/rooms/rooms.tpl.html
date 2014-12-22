@@ -17,9 +17,11 @@
                             <md-text-float label="Poradie miestnosti" ng-model="room.order" disabled></md-text-float>
                             <md-text-float label="Názov miestnosti" ng-model="room.name"></md-text-float>
                             <md-text-float label="Pozícia miestnosti" ng-model="room.positioning"></md-text-float>
-                            <md-button class="md-raised md-primary" ng-click="SaveRoom(room, changeRoom)">Uložiť</md-button>
-                            <md-button class="md-raised" ng-click="CleanRoom(room)">Vyčistiť</md-button>
-                            <md-button class="md-raised md-warn" ng-click="DeleteRoom(room)">Vymazať</md-button>
+                            <div layout="row" layout-sm="column" layout-margin layout-align="left center">
+                                <md-button class="md-raised md-primary" ng-click="SaveRoom(room, changeRoom)">Uložiť</md-button>
+                                <md-button class="md-raised" ng-click="CleanRoom(room)">Vyčistiť</md-button>
+                                <md-button class="md-raised md-warn" ng-click="DeleteRoom(room)">Vymazať</md-button>
+                            </div>
                         </div>
                     </md-item-content>
                 </md-item>

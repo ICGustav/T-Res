@@ -16,10 +16,11 @@
                         <div class="md-tile-content" layout="row" class="md-padding">
                             <md-text-float label="Poradové číslo stavu" ng-model="state.num" disabled></md-text-float>
                             <md-text-float label="Pomenovanie stavu" ng-model="state.name" disabled></md-text-float>
-    <!--<select ng-init="changeState = states[state.num]" ng-model="changeState" ng-options="state.name for state in states" required></select>-->
-                            <md-button class="md-raised md-primary" ng-click="SaveState(state)">Uložiť</md-button>
-                            <md-button class="md-raised " ng-click="CleanState(state)">Vyčistiť</md-button>
-                            <md-button class="md-raised md-warn" ng-click="DeleteState(state)">Vymazať</md-button>
+                            <div layout="row" layout-sm="column" layout-margin layout-align="left center">
+                                <md-button class="md-raised md-primary" ng-click="SaveState(state)">Uložiť</md-button>
+                                <md-button class="md-raised " ng-click="CleanState(state)">Vyčistiť</md-button>
+                                <md-button class="md-raised md-warn" ng-click="DeleteState(state)">Vymazať</md-button>
+                            </div>
                         </div>
                     </div>
                 </md-item-content>
