@@ -4,7 +4,7 @@
         $urlRouterProvider.otherwise('/home');
     });
 
-    app.controller('AppController', function ($scope, $location) {
+    app.controller('AppController', function ($scope, $mdDialog, $mdToast, $location) {
         var tabs = [
             { title: 'Miestnosti', route: "rooms", order: 0, content: ""},
             { title: 'Časti v miestnotiach', route: "parts", order: 1, content: ""},
