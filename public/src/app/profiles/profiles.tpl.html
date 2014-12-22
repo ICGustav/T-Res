@@ -20,17 +20,13 @@
                             <!--&lt;!&ndash;<span> Stôl číslo: </span>&ndash;&gt;-->
                             <!--&lt;!&ndash;<select ng-init="changeSeat.table = tables[seat.table.order]" ng-model="changeSeat.table" ng-options="table.order for table in tables" required></select>&ndash;&gt;-->
                         <!--</div>-->
-                            <div class="md-tile-content" layout="row" class="md-padding">
-                                <md-text-float label="Krstné meno" ng-model="profile.first_name" disabled></md-text-float>
-                                <md-text-float label="Priezvisko" ng-model="profile.last_name" disabled></md-text-float>
-                                <md-text-float label="eMail" ng-model="profile.email" disabled></md-text-float>
-                                <md-text-float label="Mobil" ng-model="profile.mobil" disabled></md-text-float>
-
-                            <!--</div>-->
-                            <!--<div layout="row" layout-align="start center">-->
-                                <span layout="center"> Viac ako 18 rokov: </span>
-                                <md-checkbox aria-label="{{profile.under_18}}" ng-model="profile.under_18"></md-checkbox>
-                            </div>
+                        <div class="md-tile-content" layout="row" class="md-padding">
+                            <md-text-float label="Krstné meno" ng-model="profile.first_name" disabled></md-text-float>
+                            <md-text-float label="Priezvisko" ng-model="profile.last_name" disabled></md-text-float>
+                            <md-text-float label="eMail" ng-model="profile.email" disabled></md-text-float>
+                            <md-text-float label="Mobil" ng-model="profile.mobil" disabled></md-text-float>
+                            <span layout="center"> Viac ako 18 rokov: </span>
+                            <md-checkbox aria-label="{{profile.under_18}}" ng-model="profile.under_18"></md-checkbox>
                             <div layout="row" layout-align="start center">
                                 <md-button class="btn btn-info" ng-click="SaveProfile(profile, changeProfile)">Uložiť</md-button>
                                 <md-button class="btn btn-primary" ng-click="CleanProfile(profile)">Vyčistiť</md-button>
@@ -58,7 +54,9 @@
             <md-text-float label="Mobil" ng-model="addProfile.mobil" disabled></md-text-float>
             <span layout="center"> Viac ako 18 rokov: </span>
             <md-checkbox aria-label="{{addProfile.under_18}}" ng-model="addProfile.under_18"></md-checkbox>
-            <md-button class="btn btn-info" ng-click="AddSeat(addProfile)">Vytvoriť</md-button>
+            <div layout="row" layout-align="start center">
+                <md-button class="btn btn-info" ng-click="AddSeat(addProfile)">Vytvoriť</md-button>
+            </div>
         </div>
     </md-card>
 </md-content>

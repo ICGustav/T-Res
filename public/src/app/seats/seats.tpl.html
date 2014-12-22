@@ -33,9 +33,11 @@
                                 <span layout="center"> Viac ako 18 rokov: </span>
                                 <md-checkbox aria-label="{{seat.profile.under_18}}" ng-model="seat.profile.under_18"></md-checkbox>
                             </div>
-                            <md-button class="md-raised md-primary" ng-click="SaveSeat(seat, changeSeat)">Uložiť</md-button>
-                            <md-button class="md-raised" ng-click="CleanSeat(seat)">Vyčistiť</md-button>
-                            <md-button class="md-raised md-warn" ng-click="DeleteSeat(seat)">Vymazať</md-button>
+                            <div layout="row" layout-align="start center">
+                                <md-button class="md-raised md-primary" ng-click="SaveSeat(seat, changeSeat)">Uložiť</md-button>
+                                <md-button class="md-raised" ng-click="CleanSeat(seat)">Vyčistiť</md-button>
+                                <md-button class="md-raised md-warn" ng-click="DeleteSeat(seat)">Vymazať</md-button>
+                            </div>
                         </div>
                     </div>
                 </md-item-content>
@@ -63,6 +65,7 @@
                     <span layout="center"> Viac ako 18 rokov: </span>
                     <md-checkbox aria-label="{{addSeat.profile.under_18}}" ng-model="addSeat.profile.under_18" selected></md-checkbox>
                 </div>
+
             </div>
             <div class="md-tile-content" layout="row" class="md-padding">
                 <span> Miestnosť: </span>
@@ -73,7 +76,9 @@
                 <select ng-model="addSeat.table" ng-options="table._id as table.order for table in tables" required></select>
                 <h4> Stav miesta: </h4>
                 <select ng-model="addSeat.state" ng-options="state._id as state.name for state in states" required></select>
-                <md-button class="md-raised md-primary" ng-click="AddSeat(addSeat)">Vytvoriť</md-button>
+                <div layout="row" layout-align="start center">
+                    <md-button class="md-raised md-primary" ng-click="AddSeat(addSeat)">Vytvoriť</md-button>
+                </div>
             </div>
         </div>
     </md-content>
