@@ -1,8 +1,56 @@
 var express = require('express');
-var hogan = require('hogan');
 var router = express.Router();
 
-router.get('/test1', function(req, res){
+router.get('/', function (req, res) {
+    var nodemailer = require('node-mailer');
+    var hbs = require('nodemailer-express-handlebars');
+    var options = {
+        viewEngine: {
+            extname: '.hbs',
+            layoutsDir: 'views/email/',
+            defaultLayout : 'template',
+            partialsDir : 'views/partials/'
+        },
+        viewPath: 'views/email/',
+        extName: '.hbs'
+    };
+    var transporter = new nodemailer.Mail({
+        service: 'gmail',
+        auth: {
+            user: 'admin@dsoft.eu',
+            pass: 'pusapusa44'
+        }
+    });
+    //var sgTransport = require('nodemailer-sendgrid-transport');
+    ////using sendgrid as transport, but can use any transport.
+    //var send_grid = {
+    //    auth: {
+    //        api_user: 'api_user',
+    //        api_key: 'api_key'
+    //    }
+    //};
+    var mailer = nodemailer.createTransport(transporter);//sgTransport(send_grid));
+    mailer.use('compile', hbs(options));
+    mailer.sendMail({
+        from: 'admin@dsoft.eu',
+        to: 'gustav.hlavac@gmail.com',
+        subject: 'Any Subject',
+        template: 'email_body',
+        context: {
+            variable1 : 'value1',
+            variable2 : 'value2'
+        }
+    }, function (error, response) {
+        console.log('mail sent to ' + to);
+        mailer.close();
+    });
+    res.status(200);
+});
+
+
+
+router.get('/test2', function(req, res){
+    var hogan = require('hogan');
     var basketballPlayers = [
         {name: 'Lebron James', team: 'the Heat'},
         {name: 'Kevin Durant', team: 'the Thunder'},

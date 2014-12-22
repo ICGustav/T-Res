@@ -1,5 +1,4 @@
 var express = require('express');
-//var hbs = require('hbs');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -23,6 +22,7 @@ var parts = require('./routes/parts');
 var tables = require('./routes/tables');
 var seats = require('./routes/seats');
 var states = require('./routes/states');
+var test = require('./routes/test');
 var test1 = require('./routes/test1');
 //var main = require('./routes/main');
 
