@@ -63,7 +63,7 @@ router.post('/',function(req, res){
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   // Create a new message model, fill it up and save it to Mongodb
   console.log("SAVE: Object: "+req.body._id+" with Table order: "+req.body.order);
-  return mongoose.model('tables').findOne(req.body._id).exec(function (err, table) {
+  return mongoose.model('tables').findOne({_id: req.body._id}).exec(function (err, table) {
     if (!err) {
       // this is unique for every object
       table.order = req.body.order;
@@ -71,7 +71,7 @@ router.post('/',function(req, res){
       table.room = req.body.room;
       table.save();
       console.log("modified");
-      return res.send(table);
+      return res.status(200);
     } else {
       console.log(err);
     }

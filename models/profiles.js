@@ -9,7 +9,7 @@ var userProfilesSchema = new Schema({
 	},
 	first_name: String,
 	last_name: String,
-	below_18: Boolean,
+	under_18: Boolean,
 	email: String,
 	mobil: String,
 	modified: { type: Date, default: Date.now }

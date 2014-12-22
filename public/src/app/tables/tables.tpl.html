@@ -17,9 +17,9 @@
                         <div class="md-tile-content" layout="row" class="md-padding">
                             <md-text-float label="Číslo poradia stola" ng-model="table.order" disabled></md-text-float>
                             <span> Miestnosť: </span>
-                            <select ng-init="changeTable.room = rooms[table.room.order]" ng-model="changeTable.room" ng-options="room.name for room in rooms" required></select>
+                            <select ng-init="changeTable.room = rooms[table.room.order]._id" ng-model="changeTable.room" ng-options="room._id as room.name for room in rooms" required></select>
                             <span>Časť v miestnosti</span>
-                            <select ng-init="changeTable.part = parts[table.part.order]" ng-model="changeTable.part" ng-options="part.name for part in parts" required></select>
+                            <select ng-init="changeTable.part = parts[table.part.order]._id" ng-model="changeTable.part" ng-options="part._id as part.name for part in parts" required></select>
                             <md-button class="md-raised md-primary" ng-click="SaveTable(table, changeTable)"> Uložiť </md-button>
                             <md-button class="md-raised" ng-click="CleanTable(table)"> Vyčistiť </md-button>
                             <md-button class="md-raised md-warn" ng-click="DeleteTable(table)"> Vymazať </md-button>
@@ -40,9 +40,9 @@
         <div class="md-tile-content" layout="row" class="md-padding">
             <md-text-float label="Číslo poradia stola" ng-model="addTable.order" disabled></md-text-float>
             <span> Miestnosť: </span>
-            <select ng-model="addTable.room" ng-options="room.name for room in rooms" required></select>
+            <select ng-model="addTable.room" ng-options="room._id as room.name for room in rooms" required></select>
             <span> Časť miestnosti: </span>
-            <select ng-model="addTable.part" ng-options="part.name for part in parts" required></select>
+            <select ng-model="addTable.part" ng-options="part._id as part.name for part in parts" required></select>
             <md-button class="md-raised md-primary" ng-click="AddTable(addTable)">Vytvoriť</md-button>
         </div>
     </md-card>

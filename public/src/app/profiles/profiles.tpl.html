@@ -28,8 +28,8 @@
 
                             <!--</div>-->
                             <!--<div layout="row" layout-align="start center">-->
-                                <span layout="center"> Menej ako 18 rokov: </span>
-                                <md-checkbox aria-label="{{profile.below_18}}" ng-model="profile.below_18"> {{seat.profile.below_18}}</md-checkbox>
+                                <span layout="center"> Viac ako 18 rokov: </span>
+                                <md-checkbox aria-label="{{profile.under_18}}" ng-model="profile.under_18"></md-checkbox>
                             </div>
                             <div layout="row" layout-align="start center">
                                 <md-button class="btn btn-info" ng-click="SaveProfile(profile, changeProfile)">Uložiť</md-button>
@@ -56,8 +56,8 @@
             <md-text-float label="Priezvisko" ng-model="addProfile.last_name" disabled></md-text-float>
             <md-text-float label="eMail" ng-model="addProfile.email" disabled></md-text-float>
             <md-text-float label="Mobil" ng-model="addProfile.mobil" disabled></md-text-float>
-            <span layout="center"> Menej ako 18 rokov: </span>
-            <md-checkbox aria-label="{{addProfile.below_18}}" ng-model="addProfile.below_18"></md-checkbox>
+            <span layout="center"> Viac ako 18 rokov: </span>
+            <md-checkbox aria-label="{{addProfile.under_18}}" ng-model="addProfile.under_18"></md-checkbox>
             <md-button class="btn btn-info" ng-click="AddSeat(addProfile)">Vytvoriť</md-button>
         </div>
     </md-card>

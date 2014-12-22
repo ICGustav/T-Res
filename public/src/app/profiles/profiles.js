@@ -41,7 +41,7 @@
         //    profile.last_name =  "";
         //    profile.email =  "";
         //    profile.mobil =  "";
-        //    profile.below_18 = false;
+        //    profile.under_18 = true;
         //    console.log("Profile email: '" + profile.email + "'");
         //    var Profiles = $resource('/profiles');
         //    Profiles.save(profile);
@@ -64,7 +64,7 @@
                     last_name: "",
                     email: "",
                     mobil: "",
-                    below_18: false
+                    under_18: true
             };
             var Profiles = $resource('/profiles');
             var profiles = Profiles.query({}, function(){

@@ -16,22 +16,23 @@
                         <div class="md-tile-content" layout="row" class="md-padding">
                             <md-text-float label="Poradové číslo" ng-model="seat.order" disabled></md-text-float>
                             <h4> Stav miesta: </h4>
-                            <select ng-init="changeSeat.state = states[seat.state.num]" ng-model="changeSeat.state" ng-options="state.name for state in states" required></select>
+                            <select ng-init="changeSeat.state = states[seat.state.num]._id" ng-model="changeSeat.state" ng-options="state._id as state.name for state in states" required></select>
+                            <span> Miestnosť: </span>
+                            <select ng-init="changeSeat.room = rooms[seat.room.order]._id" ng-model="changeSeat.room" ng-options="room._id as room.name for room in rooms" required></select>
+                            <span>Časť v miestnosti</span>
+                            <select ng-init="changeSeat.part = parts[seat.part.order]._id" ng-model="changeSeat.part" ng-options="part._id as part.name for part in parts" required></select>
                             <span> Stôl číslo: </span>
-                            <select ng-init="changeSeat.table = tables[seat.table.order]" ng-model="changeSeat.table" ng-options="table.order for table in tables" required></select>
-                            <div layout="row" layout-align="start center">
-                                <span layout="center"> Menej ako 18 rokov: </span>
-                                <md-checkbox aria-label="{{seat.profile.below_18}}" ng-model="seat.profile.below_18"></md-checkbox>
-                            </div>
+                            <select ng-init="changeSeat.table = tables[seat.table.order]._id" ng-model="changeSeat.table" ng-options="table._id as table.order for table in tables" required></select>
                         </div>
                         <div class="md-tile-content" layout="row" class="md-padding">
                             <md-text-float label="Krstné meno" ng-model="seat.profile.first_name" disabled></md-text-float>
                             <md-text-float label="Priezvisko" ng-model="seat.profile.last_name" disabled></md-text-float>
                             <md-text-float label="eMail" ng-model="seat.profile.email" disabled></md-text-float>
                             <md-text-float label="Mobil" ng-model="seat.profile.mobil" disabled></md-text-float>
-                       </div>
-                        <div class="md-tile-content" layout="row" class="md-padding">
-
+                            <div layout="row" layout-align="start center">
+                                <span layout="center"> Viac ako 18 rokov: </span>
+                                <md-checkbox aria-label="{{seat.profile.under_18}}" ng-model="seat.profile.under_18"></md-checkbox>
+                            </div>
                             <md-button class="md-raised md-primary" ng-click="SaveSeat(seat, changeSeat)">Uložiť</md-button>
                             <md-button class="md-raised" ng-click="CleanSeat(seat)">Vyčistiť</md-button>
                             <md-button class="md-raised md-warn" ng-click="DeleteSeat(seat)">Vymazať</md-button>
@@ -54,22 +55,24 @@
         <div layout="column">
             <div class="md-tile-content" layout="row" class="md-padding">
                 <md-text-float label="Poradové číslo" ng-model="addSeat.order" disabled></md-text-float>
-                <h4> Stav miesta: </h4>
-                <select ng-model="addSeat.state" ng-options="state.name for state in states" required></select>
-                <span> Stôl číslo: </span>
-                <select ng-model="addSeat.table" ng-options="table.order for table in tables" required></select>
-                <div layout="row" layout-align="start center">
-                    <span layout="center"> Menej ako 18 rokov: </span>
-                    <md-checkbox aria-label="{{addSeat.profile.below_18}}" ng-model="addSeat.profile.below_18"></md-checkbox>
-                </div>
-            </div>
-            <div class="md-tile-content" layout="row" class="md-padding">
                 <md-text-float label="Krstné meno" ng-model="addSeat.profile.first_name" disabled></md-text-float>
                 <md-text-float label="Priezvisko" ng-model="addSeat.profile.last_name" disabled></md-text-float>
                 <md-text-float label="eMail" ng-model="addSeat.profile.email" disabled></md-text-float>
                 <md-text-float label="Mobil" ng-model="addSeat.profile.mobil" disabled></md-text-float>
+                <div layout="row" layout-align="start center">
+                    <span layout="center"> Viac ako 18 rokov: </span>
+                    <md-checkbox aria-label="{{addSeat.profile.under_18}}" ng-model="addSeat.profile.under_18" selected></md-checkbox>
+                </div>
             </div>
             <div class="md-tile-content" layout="row" class="md-padding">
+                <span> Miestnosť: </span>
+                <select ng-model="addSeat.room" ng-options="room._id as room.name for room in rooms" required></select>
+                <span> Časť miestnosti: </span>
+                <select ng-model="addSeat.part" ng-options="part._id as part.name for part in parts" required></select>
+                <span> Stôl číslo: </span>
+                <select ng-model="addSeat.table" ng-options="table._id as table.order for table in tables" required></select>
+                <h4> Stav miesta: </h4>
+                <select ng-model="addSeat.state" ng-options="state._id as state.name for state in states" required></select>
                 <md-button class="md-raised md-primary" ng-click="AddSeat(addSeat)">Vytvoriť</md-button>
             </div>
         </div>

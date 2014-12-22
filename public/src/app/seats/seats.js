@@ -22,6 +22,12 @@
             var States = $resource('/states');
             $scope.states = States.query({});
 
+            var Rooms = $resource('/rooms');
+            $scope.rooms = Rooms.query({});
+
+            var Parts = $resource('/parts');
+            $scope.parts = Parts.query({});
+
             var Tables = $resource('/tables');
             $scope.tables = Tables.query({});
 
@@ -32,8 +38,10 @@
         // modifying Seat
         $scope.SaveSeat = function (seat, changedSeat) {
             console.log("Seat: " + seat.order + "\t Selected state: "+ changedSeat.state.name + "\t Selected table: "+ changedSeat.table.order);
-            seat.state = changedSeat.state._id;
-            seat.table = changedSeat.table._id;
+            seat.state = changedSeat.state;
+            seat.table = changedSeat.table;
+            seat.part = changedSeat.part;
+            seat.room = changedSeat.room;
             var Seats = $resource('/seats');
             Seats.save(seat);
             $scope.seats = Seats.query({});
@@ -41,11 +49,13 @@
 
         // clean Seat
         $scope.CleanSeat = function (seat) {
-            seat.full_name =  "";
-            seat.below_18 = false;
-            seat.state = $scope.states[0]._id;
+            seat.profile._id =  null;
+            seat.room = seat.room._id;
             seat.table = seat.table._id;
-            console.log("Seat: " + seat.order + '\t Selected state: '+ $scope.states[0].name);
+            seat.part = seat.part._id;
+            seat.state = $scope.states[0]._id;
+            seat.clean = {profile:false};
+            console.log("Seat: " + seat.order + '\t set a State: '+ $scope.states[0].name);
             var Seats = $resource('/seats');
             Seats.save(seat);
             $scope.seats = Seats.query({});
@@ -62,34 +72,17 @@
 
         // adding new Seat
         $scope.AddSeat = function (seat) {
-            var seatTemplate = {
-                order: $scope.seats.length,
-                profile: {
-                    first_name: "",
-                    last_name: "",
-                    email: "",
-                    mobil: "",
-                    below_18: false
-                }
-            };
+
             var States = $resource('/states');
             var state = States.query({}, function(){
                 if (seat === undefined) {
                     seat = {
-                        profile: seatTemplate.profile,
-                        order: seatTemplate.order,
-                        state: state[0]._id,
-                        table: $scope.tables[0]._id
+                        order: $scope.seats.length,
+                        state: state[0]._id
                     };
                 } else {
+                    seat.order = $scope.seats.length;
                     seat.state = state[1]._id;
-                    seat.order = seatTemplate.order;
-                    seat.profile.below_18 = seatTemplate.profile.below_18;
-                    if (seat.table === undefined) {
-                        seat.table = $scope.tables[0]._id;
-                    } else {
-                        seat.table = seat.table._id;
-                    }
                 }
                 console.log("Adding Seat: '" + seat.order + "'\t Selected state: '"+ state[0].name + "'");
                 var newSeat = $resource('/seats/add');
@@ -98,11 +91,8 @@
                 $scope.seats = Seats.query({}, function (data){
                     $scope.addSeat = undefined;
                     return data;
-
                 });
-
             });
-
         };
 
         init();

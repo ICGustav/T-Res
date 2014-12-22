@@ -34,8 +34,8 @@
 
         // modifying Table
         $scope.SaveTable = function (table, changeTable) {
-            table.part = changeTable.part._id;
-            table.room = changeTable.room._id;
+            table.part = changeTable.part;
+            table.room = changeTable.room;
             console.log("Selected table order: "+ table.order + " and assigned to tha part_id: " + table.part + " and room_id: " + table.room);
             var Tables = $resource('/tables');
             Tables.save(table);
@@ -75,13 +75,20 @@
         $scope.AddTable = function (table) {
             if (table === undefined) {
                 table = { order: $scope.tables.length };
+            } else {
+                if (table.order === undefined) {
+                    table.order = $scope.tables.length;
+                }
             }
             console.log("Table order: " + table.order + " - ADDED");
 
             var newTable = $resource('/tables/add');
             newTable.save(table);
             var Tables = $resource('/tables');
-            $scope.tables = Tables.query({});
+            $scope.tables = Tables.query({}, function (data) {
+                $scope.addTable = undefined;
+                return data;
+            });
         };
 
 

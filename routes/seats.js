@@ -7,10 +7,14 @@ var fs = require('fs');
 router.get('/', function(req, res) {
   mongoose.model('seats').find({}).sort({order:1}).exec(function (err, seats){
     mongoose.model('seats').populate(seats, {path: 'state'}, function(err, seats) {
-      mongoose.model('seats').populate(seats, {path: 'table'}, function(err, seats) {
-        mongoose.model('seats').populate(seats, {path: 'profile'}, function(err, seats) {
-          console.log(seats);
-          res.send(seats);
+      mongoose.model('seats').populate(seats, {path: 'table'}, function (err, seats) {
+        mongoose.model('seats').populate(seats, {path: 'part'}, function (err, seats) {
+          mongoose.model('seats').populate(seats, {path: 'room'}, function (err, seats) {
+            mongoose.model('seats').populate(seats, {path: 'profile'}, function (err, seats) {
+              console.log("Seats sent to client...");
+              res.send(seats);
+            });
+          });
         });
       });
     });
@@ -45,12 +49,12 @@ router.post('/add',function(req, res){
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   // Create a new message model, fill it up and save it to Mongodb
   var AddSeatSchema = mongoose.model('seats');
-  var addedSeat = new AddSeatSchema(req.body);
+  var addSeat = new AddSeatSchema(req.body);
+  console.log("SAVE: Seat Object with state: "+addSeat.state + " to seat order " + addSeat.order);
 
-  console.log("SAVE: Seat Object with state: "+addedSeat.state + " to seat order " + addedSeat.order);
-  return addedSeat.save(function (err) {
+  return addSeat.save(function (err) {
     if (!err) {
-      res.send(addedSeat);
+      res.status(200);
     } else {
       console.log(err);
       res.send(err);
@@ -63,29 +67,87 @@ router.post('/',function(req, res){
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   // Create a new message model, fill it up and save it to Mongodb
+  var without = {};
+  if (req.body.clean) {
+    without = req.body.clean;
+  }
   console.log("SAVE: Seat Object with state: "+req.body.state + " to seat order " + req.body.order);
-  return mongoose.model('seats').findOne({_id: req.body._id}, function (err, seat) {
+  return mongoose.model('seats').findOne({_id: req.body._id},without, function (err, seat) {
     if (!err) {
-      seat.profile = req.body.profile;
-      seat.state = req.body.state;
-      seat.table = req.body.table;
-      seat.part = req.body.part;
-      seat.room = req.body.room;
-      seat.save();
-      mongoose.model('tables').findOne({_id: req.body.table}, function (err, table) {
-        if (!err) {
-          var seat = {_id: req.body._id};
-          //var seat = req.body._id;
-          table.seats.push(seat);
-          table.save();
-          console.log("modified");
-          return res.send(seat);
-        } else {
-          console.log(err);
-        }
-      });
-    } else {
-      console.log(err);
+      var ProfileSchema = mongoose.model('profiles');
+      if ((req.body.profile._id !== undefined)&&(req.body.profile._id !== null)) {
+        mongoose.model('profiles').findOne({_id: req.body.profile._id}, function (err, profile) {
+          if (!err) {
+            profile.first_name = req.body.profile.first_name;
+            profile.last_name = req.body.profile.last_name;
+            profile.email = req.body.profile.email;
+            profile.mobil = req.body.profile.mobil;
+            profile.under_18 = req.body.profile.under_18;
+            profile.save();
+            seat.profile = profile._id;
+            seat.state = req.body.state;
+            seat.table = req.body.table;
+            seat.part = req.body.part;
+            seat.room = req.body.room;
+            seat.save();
+            mongoose.model('tables').findOne({_id: req.body.table}, function (err, table) {
+              if (!err) {
+                table.seats.push({_id: req.body._id});
+                table.save();
+                console.log("modified");
+                return res.status(200);
+              } else {
+                console.log(err);
+                return res.send(err);
+              }
+            });
+          } else {
+            console.log(err);
+            return res.send(err);
+          }
+        });
+      } else if (req.body.profile._id !== null) {
+        var addProfile = new ProfileSchema(req.body.profile);
+        addProfile.save();
+        console.log("Profile ID created: " + addProfile._id);
+        seat.profile = addProfile._id;
+        seat.state = req.body.state;
+        seat.table = req.body.table;
+        seat.part = req.body.part;
+        seat.room = req.body.room;
+        console.log("Profile ID added to Seat: " + seat.profile);
+        seat.save();
+        mongoose.model('tables').findOne({_id: req.body.table}, function (err, table) {
+          if (!err) {
+            table.seats.push({_id: req.body._id});
+            table.save();
+            console.log("modified");
+            return res.status(200);
+          } else {
+            console.log(err);
+            return res.send(err);
+          }
+        });
+      } else {
+        seat.profile = undefined;
+        seat.state = req.body.state;
+        seat.table = req.body.table;
+        seat.part = req.body.part;
+        seat.room = req.body.room;
+        console.log("Profile ID added to Seat: " + seat.profile);
+        seat.save();
+        mongoose.model('tables').findOne({_id: req.body.table}, function (err, table) {
+          if (!err) {
+            table.seats.push({_id: req.body._id});
+            table.save();
+            console.log("modified");
+            return res.status(200);
+          } else {
+            console.log(err);
+            return res.send(err);
+          }
+        });
+      }
     }
   });
 });
