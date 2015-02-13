@@ -19,19 +19,19 @@
             // A definitive place to put everything that needs to run when the controller starts. Avoid
             //  writing any code outside of this function that executes immediately.
 
-            var States = $resource('/states');
+            var States = $resource('/api/states');
             $scope.states = States.query({});
 
-            var Rooms = $resource('/rooms');
+            var Rooms = $resource('/api/rooms');
             $scope.rooms = Rooms.query({});
 
-            var Parts = $resource('/parts');
+            var Parts = $resource('/api/parts');
             $scope.parts = Parts.query({});
 
-            var Tables = $resource('/tables');
+            var Tables = $resource('/api/tables');
             $scope.tables = Tables.query({});
 
-            var Seats = $resource('/seats');
+            var Seats = $resource('/api/seats');
             $scope.seats= Seats.query({});
         };
 
@@ -42,7 +42,7 @@
             seat.table = changedSeat.table;
             seat.part = changedSeat.part;
             seat.room = changedSeat.room;
-            var Seats = $resource('/seats');
+            var Seats = $resource('/api/seats');
             Seats.save(seat);
             $scope.seats = Seats.query({});
         };
@@ -56,7 +56,7 @@
             seat.state = $scope.states[0]._id;
             seat.clean = {profile:false};
             console.log("Seat: " + seat.order + '\t set a State: '+ $scope.states[0].name);
-            var Seats = $resource('/seats');
+            var Seats = $resource('/api/seats');
             Seats.save(seat);
             $scope.seats = Seats.query({});
         };
@@ -64,8 +64,8 @@
         // delete Seat
         $scope.DeleteSeat = function (seat) {
             console.log("Seat: " + seat.order);
-            var Seat = $resource('/seats/:id'),
-                Seats = $resource('/seats');
+            var Seat = $resource('/api/seats/:id'),
+                Seats = $resource('/api/seats');
             Seat.delete({id: seat._id});
             $scope.seats = Seats.query({});
         };
@@ -73,7 +73,7 @@
         // adding new Seat
         $scope.AddSeat = function (seat) {
 
-            var States = $resource('/states');
+            var States = $resource('/api/states');
             var state = States.query({}, function(){
                 if (seat === undefined) {
                     seat = {
@@ -85,9 +85,9 @@
                     seat.state = state[1]._id;
                 }
                 console.log("Adding Seat: '" + seat.order + "'\t Selected state: '"+ state[0].name + "'");
-                var newSeat = $resource('/seats/add');
+                var newSeat = $resource('/api/seats/add');
                 newSeat.save(seat);
-                var Seats = $resource('/seats');
+                var Seats = $resource('/api/seats');
                 $scope.seats = Seats.query({}, function (data){
                     $scope.addSeat = undefined;
                     return data;

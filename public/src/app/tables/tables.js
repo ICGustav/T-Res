@@ -19,13 +19,13 @@
             $scope.selectedIndex = 2;
             // A definitive place to put everything that needs to run when the controller starts. Avoid
             //  writing any code outside of this function that executes immediately.
-            var Rooms = $resource('/rooms');
+            var Rooms = $resource('/api/rooms');
             $scope.rooms = Rooms.query({});
 
-            var Parts = $resource('/parts');
+            var Parts = $resource('/api/parts');
             $scope.parts = Parts.query({});
 
-            var Tables = $resource('/tables');
+            var Tables = $resource('/api/tables');
             $scope.tables = Tables.query({});
 
 
@@ -37,7 +37,7 @@
             table.part = changeTable.part;
             table.room = changeTable.room;
             console.log("Selected table order: "+ table.order + " and assigned to tha part_id: " + table.part + " and room_id: " + table.room);
-            var Tables = $resource('/tables');
+            var Tables = $resource('/api/tables');
             Tables.save(table);
             $scope.tables = Tables.query({});
         };
@@ -57,7 +57,7 @@
             table.part = "";
         //    table.order = $scope.tables.length;
             console.log("Table: " + table.order);
-            var Tables = $resource('/tables');
+            var Tables = $resource('/api/tables');
             Tables.save(table);
             $scope.tables = Tables.query({});
         };
@@ -65,8 +65,8 @@
         // delete Table
         $scope.DeleteTable = function (table) {
             console.log("Table: " + table.order);
-            var Table = $resource('/tables/:id'),
-                Tables = $resource('/tables');
+            var Table = $resource('/api/tables/:id'),
+                Tables = $resource('/api/tables');
             Table.delete({id: table._id});
             $scope.tables = Tables.query({});
         };
@@ -82,9 +82,9 @@
             }
             console.log("Table order: " + table.order + " - ADDED");
 
-            var newTable = $resource('/tables/add');
+            var newTable = $resource('/api/tables/add');
             newTable.save(table);
-            var Tables = $resource('/tables');
+            var Tables = $resource('/api/tables');
             $scope.tables = Tables.query({}, function (data) {
                 $scope.addTable = undefined;
                 return data;

@@ -29,7 +29,7 @@
     app.controller('HomeController', function ($scope, $resource, $mdDialog) {
 
         var init = function() {
-            var Rooms = $resource('/rooms');
+            var Rooms = $resource('/api/rooms');
             var rooms = Rooms.query({}, function(){
                 $scope.rooms = rooms;
             });

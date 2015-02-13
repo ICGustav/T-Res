@@ -1,7 +1,11 @@
 (function(app) {
 
-    app.config(function ($stateProvider, $urlRouterProvider) {
+    app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         $urlRouterProvider.otherwise('/home');
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
     });
 
     app.controller('AppController', function ($scope, $mdDialog, $mdToast, $location) {

@@ -22,23 +22,23 @@
             //console.log("Filter expression: " + state + ", Filered Tab: " + tab.title + ", SelectedIndex: " + tab.order);
             // A definitive place to put everything that needs to run when the controller starts. Avoid
             //  writing any code outside of this function that executes immediately.
-            var States = $resource('/states');
+            var States = $resource('/api/states');
             $scope.states = States.query({});
 
-            var Tables = $resource('/tables');
+            var Tables = $resource('/api/tables');
             $scope.tables = Tables.query({});
 
-            var Parts = $resource('/parts');
+            var Parts = $resource('/api/parts');
             $scope.parts = Parts.query({});
 
-            var Rooms = $resource('/rooms');
+            var Rooms = $resource('/api/rooms');
             $scope.rooms = Rooms.query({});
         };
 
         // modifying Room if input box
         $scope.SaveRoom = function (room) {
             console.log("Selected table name: "+ room.name);
-            var Rooms = $resource('/rooms');
+            var Rooms = $resource('/api/rooms');
             Rooms.save(room);
             $scope.rooms = Rooms.query({});
         };
@@ -57,7 +57,7 @@
             room.name =  "";
             room.positioning = "";
             console.log("Room: " + room.order);
-            var Rooms = $resource('/rooms');
+            var Rooms = $resource('/api/rooms');
             Rooms.save(room);
             $scope.rooms = Rooms.query({});
         };
@@ -65,8 +65,8 @@
         // delete Room
         $scope.DeleteRoom = function (room) {
             console.log("Room: " + room.name);
-            var Room = $resource('/rooms/:id'),
-                Rooms = $resource('/rooms');
+            var Room = $resource('/api/rooms/:id'),
+                Rooms = $resource('/api/rooms');
             Room.delete({id: room._id});
             $scope.rooms = Rooms.query({});
         };
@@ -85,9 +85,9 @@
                 room.order = $scope.rooms.length;
             }
             console.log("Room: " + room.order);
-            var newRoom = $resource('/rooms/add');
+            var newRoom = $resource('/api/rooms/add');
             newRoom.save(room);
-            var Rooms = $resource('/rooms');
+            var Rooms = $resource('/api/rooms');
             $scope.rooms = Rooms.query({});
         };
 

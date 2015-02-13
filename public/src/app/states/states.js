@@ -19,7 +19,7 @@
             // A definitive place to put everything that needs to run when the controller starts. Avoid
             //  writing any code outside of this function that executes immediately.
 
-            var States = $resource('/states');
+            var States = $resource('/api/states');
             $scope.states = States.query({});
 
         };
@@ -27,7 +27,7 @@
         // modifying State
         $scope.SaveState = function (state) {
             console.log("State: " + state.name + "\t Selected state number: "+ state.num);
-            var States = $resource('/states');
+            var States = $resource('/api/states');
             States.save(state);
             $scope.states = States.query({});
         };
@@ -36,7 +36,7 @@
         $scope.CleanState = function (state) {
             state.name =  "";
             console.log("State: '" + state.name + "'\t Number of selected state: "+ state.num + " cleaning");
-            var States = $resource('/states');
+            var States = $resource('/api/states');
             States.save(state);
             $scope.states = States.query({});
         };
@@ -44,8 +44,8 @@
         // delete State
         $scope.DeleteState = function (state) {
             console.log("DELETE State name: '" + state.name + "'");
-            var State = $resource('/states/:id'),
-                States = $resource('/states');
+            var State = $resource('/api/states/:id'),
+                States = $resource('/api/states');
             State.delete({id: state._id});
             $scope.states = States.query({});
         };
@@ -63,9 +63,9 @@
             }
             console.log("State: '" + state.name + "'\t Selected state order: "+ state.num);
 
-            var newState = $resource('/states/add');
+            var newState = $resource('/api/states/add');
             newState.save(state);
-            var States = $resource('/states');
+            var States = $resource('/api/states');
             $scope.states = States.query({}, function (data){
                 $scope.addState = undefined;
                 return data;

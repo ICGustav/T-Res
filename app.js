@@ -22,8 +22,7 @@ var parts = require('./routes/parts');
 var tables = require('./routes/tables');
 var seats = require('./routes/seats');
 var states = require('./routes/states');
-var test = require('./routes/test');
-var test1 = require('./routes/test1');
+var google_doc = require('./routes/google_doc');
 //var main = require('./routes/main');
 
 
@@ -53,22 +52,26 @@ fs.readdirSync(__dirname + '/models').forEach(function (filename) {
     if (~filename.indexOf('.js')) require(__dirname + '/models/' + filename);
 });
 
-app.use('/', routes);
-app.use('/user', user);
-app.use('/users', users);
-app.use('/user-types', userTypes);
-app.use('/profiles', profiles);
-app.use('/address', address);
+//app.use('/', routes);
 
-app.use('/rooms', rooms);
-app.use('/parts', parts);
-app.use('/tables', tables);
-app.use('/seats', seats);
-app.use('/states', states);
-app.use('/test', test);
-app.use('/tes1', test1);
+app.use('/api/user', user);
+app.use('/api/users', users);
+app.use('/api/user-types', userTypes);
+app.use('/api/profiles', profiles);
+app.use('/api/address', address);
+
+app.use('/api/rooms', rooms);
+app.use('/api/parts', parts);
+app.use('/api/tables', tables);
+app.use('/api/seats', seats);
+app.use('/api/states', states);
+app.use('/api/test', test);
+app.use('/google-doc', google_doc);
 
 //app.use('/main', main);
+app.use('/*', function(req, res){
+    res.sendfile(__dirname + '/public/build/index.html');
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

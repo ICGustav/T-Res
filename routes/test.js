@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
+
 /* GET home page. */
 router.get('/', function(req, res) {
   var basketballPlayers = [
@@ -8,6 +9,52 @@ router.get('/', function(req, res) {
     {name: 'Kevin Durant', team: 'the Thunder'},
     {name: 'Kobe Jordan',  team: 'the Lakers'}
   ];
+
+// create reusable transporter object using SMTP transport
+  var transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: 'admin@dsoft.sk',
+      pass: 'pusapusa44'
+    }
+  });
+
+//reference the plugin
+  var hbs = require('nodemailer-express-handlebars');
+//attach the plugin to the nodemailer transporter
+  transporter.use('compile', hbs(options));
+//send mail with options
+  var mail = {
+    from: 'Admin <admin@dsoft.sk>', // sender address
+    to: 'gustav.hlavac@gmail.com',
+    subject: 'Test',
+    template: 'email',
+    context: {
+      name: 'Name'
+    }
+  }
+  transporter.sendMail(mail);
+// NB! No need to recreate the transporter object. You can use
+// the same transporter object for all e-mails
+
+// setup e-mail data with unicode symbols
+  var mailOptions = {
+    from: 'Admin <admin@dsoft.sk>', // sender address
+    to: 'gustav.hlavac@gmail.com',//, icecoolg@gmail.com', // list of receivers
+    subject: 'Hello ✔', // Subject line
+    // text: 'Hello world ✔', // plaintext body
+    html: '<b>Hello world ✔</b>' // html body
+  };
+
+// send mail with defined transport object
+  transporter.sendMail(mailOptions, function(error, info){
+    if(error){
+      console.log(error);
+    }else{
+      console.log('Message sent: ' + info.response);
+    }
+  });
+
   //res.render('main', { title: 'Express', someValue: 'Some Value', body: '<p> Here is a body... </p>' });
   res.render('main',{ basketballPlayers: basketballPlayers });
 });

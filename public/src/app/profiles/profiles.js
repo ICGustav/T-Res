@@ -19,10 +19,10 @@
             // A definitive place to put everything that needs to run when the controller starts. Avoid
             //  writing any code outside of this function that executes immediately.
 
-            var Users = $resource('/users');
+            var Users = $resource('/api/users');
             $scope.users= Users.query({});
 
-            var Profiles = $resource('/profiles');
+            var Profiles = $resource('/api/profiles');
             $scope.profiles= Profiles.query({});
         };
 
@@ -30,7 +30,7 @@
         $scope.SaveProfile = function (profile, changedProfile) {
             console.log("Profile email: '" + profile.email + "'");
             profile.user = changedProfile.user._id;
-            var Profiles = $resource('/profiles');
+            var Profiles = $resource('/api/profiles');
             Profiles.save(profile);
             $scope.profiles = Profiles.query({});
         };
@@ -51,8 +51,8 @@
         // delete Profile
         $scope.DeleteProfile = function (profile) {
             console.log("Profile: '" + profile.email + "'");
-            var Profile = $resource('/profiles/:id'),
-                Profiles = $resource('/profiles');
+            var Profile = $resource('/api/profiles/:id'),
+                Profiles = $resource('/api/profiles');
             Profile.delete({id: profile._id});
             $scope.profiles = Profiles.query({});
         };
@@ -66,7 +66,7 @@
                     mobil: "",
                     under_18: true
             };
-            var Profiles = $resource('/profiles');
+            var Profiles = $resource('/api/profiles');
             var profiles = Profiles.query({}, function(){
                 if (profile === undefined) {
                     profile = profileTemplate;
@@ -74,9 +74,9 @@
 
                 }
                 console.log("Adding Profile: '" + profile.email + "'");
-                var newProfile = $resource('/profiles/add');
+                var newProfile = $resource('/api/profiles/add');
                 newProfile.save(profile);
-                var Profiles = $resource('/profiles');
+                var Profiles = $resource('/api/profiles');
                 $scope.profiles = Profiles.query({}, function (data){
                     $scope.addProfile = undefined;
                     return data;
